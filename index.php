@@ -51,7 +51,7 @@
         </div>
     </header>
 
-    <!-- NAVIGATION BAR -->
+    <!-- PUBLIC NAVIGATION BAR (ADMIN LINK HIDDEN) -->
     <nav class="bg-slate-900/90 backdrop-blur-md text-white border-b border-slate-800 py-3.5 px-4 shadow-xl sticky top-0 z-40">
         <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-4">
             <div class="flex items-center gap-3">
@@ -64,9 +64,6 @@
                 </button>
                 <button onclick="openModal('statusModal')" class="bg-slate-800 hover:bg-slate-700 text-slate-200 px-4 py-2.5 rounded-lg text-xs font-bold flex items-center gap-2 border border-slate-700 transition">
                     <i class="fa-solid fa-folder-open text-amber-400"></i> Check Status
-                </button>
-                <button onclick="openAdminPortalLink()" class="bg-slate-950 hover:bg-slate-900 text-amber-400 px-3 py-2.5 rounded-lg text-xs font-semibold flex items-center gap-2 border border-slate-800 transition">
-                    <i class="fa-solid fa-lock text-amber-400"></i> /admin.php
                 </button>
             </div>
         </div>
@@ -297,11 +294,11 @@
                         <h2 class="text-3xl font-black mt-1">PT GRANT Applications Manager</h2>
                     </div>
                     <div class="flex gap-2">
-                        <button onclick="logoutAdmin()" class="bg-red-600/80 hover:bg-red-600 px-4 py-2 rounded-lg text-xs font-bold text-white transition">
+                        <button onclick="logoutAdmin()" class="bg-red-600 hover:bg-red-500 px-4 py-2 rounded-lg text-xs font-bold text-white transition">
                             Logout Admin
                         </button>
                         <button onclick="showSection('cards')" class="bg-slate-800 hover:bg-slate-700 px-4 py-2 rounded-lg text-xs font-bold text-slate-300 border border-slate-700">
-                            Main Page
+                            Exit to Main Page
                         </button>
                     </div>
                 </div>
@@ -410,23 +407,23 @@
 
     </main>
 
-    <!-- ADMIN LOGIN MODAL (PASSWORD: Admin123) -->
+    <!-- ADMIN LOGIN MODAL (PASSWORD REQUIRED: Adminpassword123) -->
     <div id="adminLoginModal" class="hidden fixed inset-0 bg-slate-950/90 backdrop-blur-md flex items-center justify-center p-4 z-50">
         <div class="bg-slate-900 max-w-sm w-full rounded-2xl shadow-2xl p-6 relative border-2 border-amber-500">
             <button onclick="closeModal('adminLoginModal')" class="absolute top-4 right-4 text-slate-400 hover:text-white text-xl font-bold">&times;</button>
             <div class="w-12 h-12 bg-amber-500/20 text-amber-400 rounded-full flex items-center justify-center mx-auto mb-3 text-xl border border-amber-500/40">
                 <i class="fa-solid fa-user-shield"></i>
             </div>
-            <h3 class="text-xl font-bold text-white text-center mb-1">Admin Portal (/admin.php)</h3>
-            <p class="text-xs text-slate-400 text-center mb-4">Enter password (<strong>Admin123</strong>) to access.</p>
+            <h3 class="text-xl font-bold text-white text-center mb-1">Admin Access Control</h3>
+            <p class="text-xs text-slate-400 text-center mb-4">Enter password to unlock the administrative portal.</p>
 
             <form onsubmit="handleAdminLogin(event)" class="space-y-4">
                 <div>
-                    <label class="block text-xs font-bold text-slate-400 uppercase mb-1">Password *</label>
-                    <input type="password" id="adminPasswordInput" required placeholder="Admin123" class="w-full border border-slate-800 bg-slate-950 rounded-lg p-3 text-white font-mono">
+                    <label class="block text-xs font-bold text-slate-400 uppercase mb-1">Admin Password *</label>
+                    <input type="password" id="adminPasswordInput" required placeholder="Enter Admin Password" class="w-full border border-slate-800 bg-slate-950 rounded-lg p-3 text-white font-mono">
                 </div>
                 <button type="submit" class="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-black py-3 rounded-xl transition shadow-lg">
-                    Login to Admin Portal
+                    Authenticate Admin
                 </button>
             </form>
         </div>
@@ -651,13 +648,42 @@
         let applications = JSON.parse(localStorage.getItem('pt_applications')) || [];
         let currentApplicant = null;
         let selectedAdminTicket = null;
-        let isAdminLoggedIn = false;
+        let isAdminAuthenticated = false;
 
+        // Auto-detect admin path on load
         window.addEventListener('DOMContentLoaded', () => {
             if (window.location.pathname.endsWith('admin.php') || window.location.hash === '#admin.php') {
-                openAdminPortalLink();
+                checkAdminAccess();
             }
         });
+
+        function checkAdminAccess() {
+            if (isAdminAuthenticated) {
+                renderAdminTable();
+                showSection('admin');
+            } else {
+                openModal('adminLoginModal');
+            }
+        }
+
+        function handleAdminLogin(e) {
+            e.preventDefault();
+            const pwd = document.getElementById('adminPasswordInput').value;
+            if (pwd === 'Adminpassword123') {
+                isAdminAuthenticated = true;
+                closeModal('adminLoginModal');
+                document.getElementById('adminPasswordInput').value = '';
+                renderAdminTable();
+                showSection('admin');
+            } else {
+                alert('Invalid Admin Password.');
+            }
+        }
+
+        function logoutAdmin() {
+            isAdminAuthenticated = false;
+            showSection('cards');
+        }
 
         function saveStorage() {
             localStorage.setItem('pt_applications', JSON.stringify(applications));
@@ -855,35 +881,6 @@
             };
 
             reader.readAsDataURL(file);
-        }
-
-        function openAdminPortalLink() {
-            if (isAdminLoggedIn) {
-                renderAdminTable();
-                showSection('admin');
-            } else {
-                openModal('adminLoginModal');
-            }
-        }
-
-        function handleAdminLogin(e) {
-            e.preventDefault();
-            const pwd = document.getElementById('adminPasswordInput').value;
-            if (pwd === 'Admin123') {
-                isAdminLoggedIn = true;
-                closeModal('adminLoginModal');
-                document.getElementById('adminPasswordInput').value = '';
-                renderAdminTable();
-                showSection('admin');
-            } else {
-                alert('Incorrect Admin Password! (Hint: Admin123)');
-            }
-        }
-
-        function logoutAdmin() {
-            isAdminLoggedIn = false;
-            showSection('cards');
-            alert('Admin logged out.');
         }
 
         function renderAdminTable() {
