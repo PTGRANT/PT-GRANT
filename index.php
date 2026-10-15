@@ -39,7 +39,8 @@
                 <h1 class="text-3xl md:text-6xl font-black text-white tracking-tight uppercase drop-shadow-lg">PT GRANT ASSISTANCE</h1>
                 <p class="text-slate-300 text-sm md:text-lg max-w-3xl mt-2 font-light">Select your required assistance category below to open your grant application form instantly.</p>
                 
-                <div class="mt-6 flex flex-wrap gap-4 justify-center">
+                <!-- HERO BUTTONS (Hidden in Status View) -->
+                <div id="heroButtonsBox" class="mt-6 flex flex-wrap gap-4 justify-center">
                     <button onclick="openApplyModal('Personal Loan Assistance')" class="bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-black px-8 py-4 rounded-xl text-lg shadow-2xl transition transform hover:scale-105 flex items-center gap-3 border border-amber-300">
                         <i class="fa-solid fa-paper-plane text-xl"></i> APPLY NOW FOR GRANT
                     </button>
@@ -51,14 +52,15 @@
         </div>
     </header>
 
-    <!-- NAVIGATION BAR (ADMIN PORTAL BUTTON) -->
+    <!-- NAVIGATION BAR -->
     <nav class="bg-slate-900/90 backdrop-blur-md text-white border-b border-slate-800 py-3.5 px-4 shadow-xl sticky top-0 z-40">
         <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-4">
             <div class="flex items-center gap-3">
                 <div class="w-9 h-9 rounded-lg bg-amber-500 text-slate-950 flex items-center justify-center font-black text-base shadow">PT</div>
                 <span class="font-black text-xl tracking-wider text-amber-400">PT GRANT</span>
             </div>
-            <div class="flex gap-3">
+            <!-- NAV BUTTONS (Hidden in Status View) -->
+            <div id="navButtonsBox" class="flex gap-3">
                 <button onclick="openApplyModal('Personal Loan Assistance')" class="bg-amber-500 hover:bg-amber-400 text-slate-950 px-5 py-2.5 rounded-lg text-sm font-black flex items-center gap-2 transition shadow-lg">
                     <i class="fa-solid fa-bolt"></i> Apply Now
                 </button>
@@ -66,7 +68,7 @@
                     <i class="fa-solid fa-folder-open text-amber-400"></i> Check Status
                 </button>
                 <button onclick="checkAdminAccess()" class="bg-slate-950 hover:bg-slate-900 text-amber-400 px-3.5 py-2.5 rounded-lg text-xs font-semibold flex items-center gap-2 border border-slate-800 transition shadow">
-                    <i class="fa-solid fa-lock text-amber-400"></i> admin
+                    <i class="fa-solid fa-lock text-amber-400"></i> /admin.php
                 </button>
             </div>
         </div>
@@ -203,7 +205,7 @@
                         <p class="text-sm text-slate-400">Ticket ID: <span id="dashTicketId" class="font-mono font-bold text-amber-400 bg-slate-950 px-3 py-1 rounded border border-amber-500/30"></span></p>
                     </div>
                     <div class="flex items-center gap-3">
-                        <button onclick="showSection('cards')" class="bg-slate-800 hover:bg-slate-700 text-xs px-3 py-2 rounded-lg font-bold border border-slate-700">Logout Status</button>
+                        <button onclick="logoutStatus()" class="bg-slate-800 hover:bg-slate-700 text-xs px-3 py-2 rounded-lg font-bold border border-slate-700">Logout Status</button>
                         <span id="dashStatusBadge" class="inline-block px-5 py-2 rounded-full font-bold text-sm shadow-md"></span>
                     </div>
                 </div>
@@ -410,7 +412,7 @@
 
     </main>
 
-    <!-- ADMIN LOGIN MODAL (PASSWORD:  admin only) -->
+    <!-- ADMIN LOGIN MODAL (PASSWORD: Adminpassword123) -->
     <div id="adminLoginModal" class="hidden fixed inset-0 bg-slate-950/90 backdrop-blur-md flex items-center justify-center p-4 z-50">
         <div class="bg-slate-900 max-w-sm w-full rounded-2xl shadow-2xl p-6 relative border-2 border-amber-500">
             <button onclick="closeModal('adminLoginModal')" class="absolute top-4 right-4 text-slate-400 hover:text-white text-xl font-bold">&times;</button>
@@ -418,12 +420,12 @@
                 <i class="fa-solid fa-user-shield"></i>
             </div>
             <h3 class="text-xl font-bold text-white text-center mb-1">Admin Portal Access</h3>
-            <p class="text-xs text-slate-400 text-center mb-4">Enter password (<strong>admin only</strong>) to unlock.</p>
+            <p class="text-xs text-slate-400 text-center mb-4">Enter password (<strong>Adminpassword123</strong>) to unlock.</p>
 
             <form onsubmit="handleAdminLogin(event)" class="space-y-4">
                 <div>
                     <label class="block text-xs font-bold text-slate-400 uppercase mb-1">Password *</label>
-                    <input type="password" id="adminPasswordInput" required placeholder="admin only" class="w-full border border-slate-800 bg-slate-950 rounded-lg p-3 text-white font-mono">
+                    <input type="password" id="adminPasswordInput" required placeholder="Adminpassword123" class="w-full border border-slate-800 bg-slate-950 rounded-lg p-3 text-white font-mono">
                 </div>
                 <button type="submit" class="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-black py-3 rounded-xl transition shadow-lg">
                     Login to Admin Portal
@@ -720,6 +722,13 @@
             showSection('cards');
         }
 
+        function logoutStatus() {
+            currentApplicant = null;
+            document.getElementById('navButtonsBox').classList.remove('hidden');
+            document.getElementById('heroButtonsBox').classList.remove('hidden');
+            showSection('cards');
+        }
+
         function saveStorage() {
             localStorage.setItem('pt_applications', JSON.stringify(applications));
         }
@@ -730,7 +739,12 @@
             document.getElementById('adminPortalSection').classList.add('hidden');
 
             if (sec === 'cards') document.getElementById('assistanceCardsSection').classList.remove('hidden');
-            if (sec === 'status') document.getElementById('statusDashboardSection').classList.remove('hidden');
+            if (sec === 'status') {
+                document.getElementById('statusDashboardSection').classList.remove('hidden');
+                // Hide main action buttons when checking status
+                document.getElementById('navButtonsBox').classList.add('hidden');
+                document.getElementById('heroButtonsBox').classList.add('hidden');
+            }
             if (sec === 'admin') document.getElementById('adminPortalSection').classList.remove('hidden');
         }
 
