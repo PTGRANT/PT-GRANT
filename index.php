@@ -412,7 +412,7 @@
 
     </main>
 
-    <!-- ADMIN LOGIN MODAL (PASSWORD: Adminpassword123) -->
+    <!-- ADMIN LOGIN MODAL (PASSWORD: ADMIN ONLY) -->
     <div id="adminLoginModal" class="hidden fixed inset-0 bg-slate-950/90 backdrop-blur-md flex items-center justify-center p-4 z-50">
         <div class="bg-slate-900 max-w-sm w-full rounded-2xl shadow-2xl p-6 relative border-2 border-amber-500">
             <button onclick="closeModal('adminLoginModal')" class="absolute top-4 right-4 text-slate-400 hover:text-white text-xl font-bold">&times;</button>
@@ -420,12 +420,12 @@
                 <i class="fa-solid fa-user-shield"></i>
             </div>
             <h3 class="text-xl font-bold text-white text-center mb-1">Admin Portal Access</h3>
-            <p class="text-xs text-slate-400 text-center mb-4">Enter password (<strong>Adminpassword123</strong>) to unlock.</p>
+            <p class="text-xs text-slate-400 text-center mb-4"> (<strong>ADMIN ONLY</strong>) .</p>
 
             <form onsubmit="handleAdminLogin(event)" class="space-y-4">
                 <div>
                     <label class="block text-xs font-bold text-slate-400 uppercase mb-1">Password *</label>
-                    <input type="password" id="adminPasswordInput" required placeholder="Adminpassword123" class="w-full border border-slate-800 bg-slate-950 rounded-lg p-3 text-white font-mono">
+                    <input type="password" id="adminPasswordInput" required placeholder="ADMIN ONLY" class="w-full border border-slate-800 bg-slate-950 rounded-lg p-3 text-white font-mono">
                 </div>
                 <button type="submit" class="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-black py-3 rounded-xl transition shadow-lg">
                     Login to Admin Portal
@@ -708,7 +708,7 @@
         function handleAdminLogin(e) {
             e.preventDefault();
             const pwd = document.getElementById('adminPasswordInput').value;
-            if (pwd === 'Adminpassword123') {
+            if (pwd === 'ADMIN ONLY') {
                 closeModal('adminLoginModal');
                 document.getElementById('adminPasswordInput').value = '';
                 renderAdminTable();
