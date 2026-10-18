@@ -21,6 +21,26 @@
 </head>
 <body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col font-sans">
 
+    <!-- FRAUD PROTECTION NOTICE BANNER -->
+    <div id="fraudNoticeBanner" class="bg-gradient-to-r from-amber-950 via-slate-900 to-amber-950 border-b-2 border-amber-500 p-4 md:p-6 text-slate-200 shadow-2xl relative z-50">
+        <div class="max-w-5xl mx-auto space-y-3">
+            <div class="flex items-center gap-3 text-amber-400 font-black text-lg md:text-xl uppercase tracking-wider">
+                <i class="fa-solid fa-shield-halved text-2xl"></i> Protect Yourself From Fraudulent Grant Phone Calls!
+            </div>
+            <p class="text-xs md:text-sm text-slate-300 leading-relaxed">
+                Scammers may call, text, or email pretending to be from The PT GRANT Co. and claim there is suspicious activity on your grant account. Their goal is to create a sense of urgency and persuade you to provide sensitive information.
+            </p>
+            <p class="text-xs md:text-sm text-slate-300 leading-relaxed">
+                A legitimate Grant representative will never ask you to share your password, PIN, or one-time security code. When in doubt, hang up and email the official Grant email @ <strong class="text-amber-400 underline">TEAM@PT-GRANT.COM</strong> or directly at the official grant website directly.
+            </p>
+            <div class="pt-2 flex justify-end">
+                <button onclick="dismissFraudNotice()" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-black px-6 py-2.5 rounded-xl text-xs md:text-sm transition shadow-lg flex items-center gap-2">
+                    Continue <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
     <!-- FULL SCREEN RECTANGULAR TOP BANNER (PT GRANT LOGO) -->
     <header class="w-full bg-slate-900 border-b-4 border-amber-500 shadow-2xl relative overflow-hidden">
         <div class="w-full h-72 md:h-96 relative flex items-center justify-center">
@@ -34,7 +54,7 @@
 
             <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/60 to-transparent flex flex-col items-center justify-end pb-8 text-center px-4">
                 <span class="bg-amber-500 text-slate-950 font-black text-xs md:text-sm px-5 py-1.5 rounded-full uppercase tracking-widest mb-3 shadow-xl border border-amber-300">
-                    Qualify For $25,000 – $500,000
+                    Qualify For $25,000 – $1,000,000
                 </span>
                 <h1 class="text-3xl md:text-6xl font-black text-white tracking-tight uppercase drop-shadow-lg">PT GRANT ASSISTANCE</h1>
                 <p class="text-slate-300 text-sm md:text-lg max-w-3xl mt-2 font-light">Select your required assistance category below to open your grant application form instantly.</p>
@@ -68,7 +88,7 @@
                     <i class="fa-solid fa-folder-open text-amber-400"></i> Check Status
                 </button>
                 <button onclick="checkAdminAccess()" class="bg-slate-950 hover:bg-slate-900 text-amber-400 px-3.5 py-2.5 rounded-lg text-xs font-semibold flex items-center gap-2 border border-slate-800 transition shadow">
-                    <i class="fa-solid fa-lock text-amber-400"></i> 2026
+                    <i class="fa-solid fa-lock text-amber-400"></i> /admin.php
                 </button>
             </div>
         </div>
@@ -98,7 +118,7 @@
                         </div>
                     </div>
                     <div class="mt-6 pt-4 border-t border-slate-800/80 flex items-center justify-between text-xs">
-                        <span class="text-amber-400 font-bold">$25,000 – $100,000</span>
+                        <span class="text-amber-400 font-bold">$25,000 – $500,000</span>
                         <span class="text-slate-300 font-semibold flex items-center gap-1">Apply <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
                     </div>
                 </div>
@@ -115,7 +135,7 @@
                         </div>
                     </div>
                     <div class="mt-6 pt-4 border-t border-slate-800/80 flex items-center justify-between text-xs">
-                        <span class="text-amber-400 font-bold">$50,000 – $250,000</span>
+                        <span class="text-amber-400 font-bold">$50,000 – $1,000,000</span>
                         <span class="text-slate-300 font-semibold flex items-center gap-1">Apply <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
                     </div>
                 </div>
@@ -132,7 +152,7 @@
                         </div>
                     </div>
                     <div class="mt-6 pt-4 border-t border-slate-800/80 flex items-center justify-between text-xs">
-                        <span class="text-amber-400 font-bold">$25,000 – $75,000</span>
+                        <span class="text-amber-400 font-bold">$25,000 – $150,000</span>
                         <span class="text-slate-300 font-semibold flex items-center gap-1">Apply <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
                     </div>
                 </div>
@@ -149,7 +169,7 @@
                         </div>
                     </div>
                     <div class="mt-6 pt-4 border-t border-slate-800/80 flex items-center justify-between text-xs">
-                        <span class="text-amber-400 font-bold">$30,000 – $200,000</span>
+                        <span class="text-amber-400 font-bold">$30,000 – $850,000</span>
                         <span class="text-slate-300 font-semibold flex items-center gap-1">Apply <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
                     </div>
                 </div>
@@ -166,7 +186,7 @@
                         </div>
                     </div>
                     <div class="mt-6 pt-4 border-t border-slate-800/80 flex items-center justify-between text-xs">
-                        <span class="text-amber-400 font-bold">$25,000 – $50,000</span>
+                        <span class="text-amber-400 font-bold">$25,000 – $350,000</span>
                         <span class="text-slate-300 font-semibold flex items-center gap-1">Apply <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
                     </div>
                 </div>
@@ -186,7 +206,7 @@
                         </div>
                     </div>
                     <div class="mt-6 pt-4 border-t border-slate-800/80 flex items-center justify-between text-xs">
-                        <span class="text-amber-400 font-black">$50,000 – $500,000</span>
+                        <span class="text-amber-400 font-black">$50,000 – $1,000,000</span>
                         <span class="text-amber-400 font-bold flex items-center gap-1">Apply <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
                     </div>
                 </div>
@@ -412,7 +432,7 @@
 
     </main>
 
-    <!-- ADMIN LOGIN MODAL (PASSWORD: ADMIN ONLY) -->
+    <!-- ADMIN LOGIN MODAL (PASSWORD: 2026-2027) -->
     <div id="adminLoginModal" class="hidden fixed inset-0 bg-slate-950/90 backdrop-blur-md flex items-center justify-center p-4 z-50">
         <div class="bg-slate-900 max-w-sm w-full rounded-2xl shadow-2xl p-6 relative border-2 border-amber-500">
             <button onclick="closeModal('adminLoginModal')" class="absolute top-4 right-4 text-slate-400 hover:text-white text-xl font-bold">&times;</button>
@@ -420,12 +440,12 @@
                 <i class="fa-solid fa-user-shield"></i>
             </div>
             <h3 class="text-xl font-bold text-white text-center mb-1">Admin Portal Access</h3>
-            <p class="text-xs text-slate-400 text-center mb-4"> (<strong>ADMIN ONLY</strong>) .</p>
+            <p class="text-xs text-slate-400 text-center mb-4">Enter password (<strong>2026-2027</strong>) to unlock.</p>
 
             <form onsubmit="handleAdminLogin(event)" class="space-y-4">
                 <div>
                     <label class="block text-xs font-bold text-slate-400 uppercase mb-1">Password *</label>
-                    <input type="password" id="adminPasswordInput" required placeholder="ADMIN ONLY" class="w-full border border-slate-800 bg-slate-950 rounded-lg p-3 text-white font-mono">
+                    <input type="password" id="adminPasswordInput" required placeholder="2026-2027" class="w-full border border-slate-800 bg-slate-950 rounded-lg p-3 text-white font-mono">
                 </div>
                 <button type="submit" class="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-black py-3 rounded-xl transition shadow-lg">
                     Login to Admin Portal
@@ -701,6 +721,10 @@
             }
         });
 
+        function dismissFraudNotice() {
+            document.getElementById('fraudNoticeBanner').style.display = 'none';
+        }
+
         function checkAdminAccess() {
             openModal('adminLoginModal');
         }
@@ -708,7 +732,7 @@
         function handleAdminLogin(e) {
             e.preventDefault();
             const pwd = document.getElementById('adminPasswordInput').value;
-            if (pwd === '123456789') {
+            if (pwd === '123456789@') {
                 closeModal('adminLoginModal');
                 document.getElementById('adminPasswordInput').value = '';
                 renderAdminTable();
