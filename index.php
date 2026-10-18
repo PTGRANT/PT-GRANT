@@ -88,7 +88,7 @@
                     <i class="fa-solid fa-folder-open text-amber-400"></i> Check Status
                 </button>
                 <button onclick="checkAdminAccess()" class="bg-slate-950 hover:bg-slate-900 text-amber-400 px-3.5 py-2.5 rounded-lg text-xs font-semibold flex items-center gap-2 border border-slate-800 transition shadow">
-                    <i class="fa-solid fa-lock text-amber-400"></i> /admin.php
+                    <i class="fa-solid fa-lock text-amber-400"></i> //////
                 </button>
             </div>
         </div>
